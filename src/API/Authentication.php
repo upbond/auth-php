@@ -88,7 +88,7 @@ class Authentication
      */
     public function __construct(
         string $domain,
-        string $client_id,
+        ?string $client_id,
         ?string $client_secret = null,
         ?string $audience = null,
         ?string $scope = null,
