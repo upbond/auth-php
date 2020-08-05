@@ -55,7 +55,7 @@ class ClientGrantsTest extends ApiTests
 
         self::$apiIdentifier = 'TEST_PHP_SDK_CLIENT_GRANT_API_'.uniqid();
         $api->resourceServers()->create(self::$apiIdentifier, $create_data);
-        usleep(AUTH0_PHP_TEST_INTEGRATION_SLEEP);
+        usleep(UPBOND_AUTH_PHP_TEST_INTEGRATION_SLEEP);
     }
 
     public function setUp()
@@ -72,7 +72,7 @@ class ClientGrantsTest extends ApiTests
         parent::tearDownAfterClass();
         $api = new Management(self::$env['API_TOKEN'], self::$env['DOMAIN']);
         $api->resourceServers()->delete( self::$apiIdentifier );
-        usleep(AUTH0_PHP_TEST_INTEGRATION_SLEEP);
+        usleep(UPBOND_AUTH_PHP_TEST_INTEGRATION_SLEEP);
     }
 
     /**
@@ -86,7 +86,7 @@ class ClientGrantsTest extends ApiTests
     public function testGet()
     {
         $all_results = self::$api->getAll();
-        usleep(AUTH0_PHP_TEST_INTEGRATION_SLEEP);
+        usleep(UPBOND_AUTH_PHP_TEST_INTEGRATION_SLEEP);
         $this->assertNotEmpty($all_results);
 
         $expected_client_id = $all_results[0]['client_id'] ?: null;
@@ -96,12 +96,12 @@ class ClientGrantsTest extends ApiTests
         $this->assertNotNull($expected_audience);
 
         $audience_results = self::$api->getByAudience($expected_audience);
-        usleep(AUTH0_PHP_TEST_INTEGRATION_SLEEP);
+        usleep(UPBOND_AUTH_PHP_TEST_INTEGRATION_SLEEP);
         $this->assertNotEmpty($audience_results);
         $this->assertEquals($expected_audience, $audience_results[0]['audience']);
 
         $client_id_results = self::$api->getByClientId($expected_client_id);
-        usleep(AUTH0_PHP_TEST_INTEGRATION_SLEEP);
+        usleep(UPBOND_AUTH_PHP_TEST_INTEGRATION_SLEEP);
         $this->assertNotEmpty($client_id_results);
         $this->assertEquals($expected_client_id, $client_id_results[0]['client_id']);
     }
@@ -118,12 +118,12 @@ class ClientGrantsTest extends ApiTests
         $expected_count = 2;
 
         $results_1 = self::$api->getAll([], 0, $expected_count);
-        usleep(AUTH0_PHP_TEST_INTEGRATION_SLEEP);
+        usleep(UPBOND_AUTH_PHP_TEST_INTEGRATION_SLEEP);
         $this->assertCount($expected_count, $results_1);
 
         $expected_page = 1;
         $results_2     = self::$api->getAll([], $expected_page, 1);
-        usleep(AUTH0_PHP_TEST_INTEGRATION_SLEEP);
+        usleep(UPBOND_AUTH_PHP_TEST_INTEGRATION_SLEEP);
         $this->assertCount(1, $results_2);
         $this->assertEquals($results_1[$expected_page]['client_id'], $results_2[0]['client_id']);
         $this->assertEquals($results_1[$expected_page]['audience'], $results_2[0]['audience']);
@@ -142,7 +142,7 @@ class ClientGrantsTest extends ApiTests
         $expected_count = 2;
 
         $results = self::$api->getAll(['include_totals' => true], $expected_page, $expected_count);
-        usleep(AUTH0_PHP_TEST_INTEGRATION_SLEEP);
+        usleep(UPBOND_AUTH_PHP_TEST_INTEGRATION_SLEEP);
         $this->assertArrayHasKey('total', $results);
         $this->assertEquals($expected_page * $expected_count, $results['start']);
         $this->assertEquals($expected_count, $results['limit']);
@@ -164,7 +164,7 @@ class ClientGrantsTest extends ApiTests
 
         // Create a Client Grant with just one of the testing scopes.
         $create_result = self::$api->create($client_id, $audience, [self::$scopes[0]]);
-        usleep(AUTH0_PHP_TEST_INTEGRATION_SLEEP);
+        usleep(UPBOND_AUTH_PHP_TEST_INTEGRATION_SLEEP);
         $this->assertArrayHasKey('id', $create_result);
         $this->assertEquals($client_id, $create_result['client_id']);
         $this->assertEquals($audience, $create_result['audience']);
@@ -174,12 +174,12 @@ class ClientGrantsTest extends ApiTests
 
         // Test patching the created Client Grant.
         $update_result = self::$api->update($grant_id, self::$scopes);
-        usleep(AUTH0_PHP_TEST_INTEGRATION_SLEEP);
+        usleep(UPBOND_AUTH_PHP_TEST_INTEGRATION_SLEEP);
         $this->assertEquals(self::$scopes, $update_result['scope']);
 
         // Test deleting the created Client Grant.
         $delete_result = self::$api->delete($grant_id);
-        usleep(AUTH0_PHP_TEST_INTEGRATION_SLEEP);
+        usleep(UPBOND_AUTH_PHP_TEST_INTEGRATION_SLEEP);
         $this->assertNull($delete_result);
     }
 

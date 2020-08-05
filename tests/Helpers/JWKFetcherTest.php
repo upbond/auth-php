@@ -16,7 +16,7 @@ class JWKFetcherTest extends TestCase
 
     public function testThatGetKeysReturnsKeys()
     {
-        $test_jwks = file_get_contents( AUTH0_PHP_TEST_JSON_DIR.'localhost--well-known-jwks-json.json' );
+        $test_jwks = file_get_contents( UPBOND_AUTH_PHP_TEST_JSON_DIR.'localhost--well-known-jwks-json.json' );
         $jwks      = new MockJwks( [ new Response( 200, [ 'Content-Type' => 'application/json' ], $test_jwks ) ] );
 
         $jwks_formatted = $jwks->call()->getKeys( uniqid() );
