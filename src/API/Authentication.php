@@ -142,7 +142,7 @@ class Authentication
         $params = array_filter($params);
 
         return sprintf(
-            'https://%s/authorize?%s',
+            'https://%s/authenticate/oauth/authorize?%s',
             $this->domain,
             Psr7\build_query($params)
         );
