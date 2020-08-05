@@ -1,14 +1,14 @@
 <?php
 
-namespace Auth0\SDK\API\Management;
+namespace Upbond\Auth\SDK\API\Management;
 
-use Auth0\SDK\Exception\CoreException;
+use Upbond\Auth\SDK\Exception\CoreException;
 
 /**
  * Class ClientGrants.
  * Handles requests to the Client Grants endpoint of the v2 Management API.
  *
- * @package Auth0\SDK\API\Management
+ * @package Upbond\Auth\SDK\API\Management
  */
 class ClientGrants extends GenericResource
 {

@@ -1,12 +1,12 @@
 <?php
 
-namespace Auth0\Tests;
+namespace Auth\Tests;
 
-use Auth0\SDK\API\Header\AuthorizationBearer;
-use Auth0\SDK\API\Header\ContentType;
-use Auth0\SDK\API\Header\ForwardedFor;
-use Auth0\SDK\API\Header\Header;
-use Auth0\SDK\API\Header\Telemetry;
+use Upbond\Auth\SDK\API\Header\AuthorizationBearer;
+use Upbond\Auth\SDK\API\Header\ContentType;
+use Upbond\Auth\SDK\API\Header\ForwardedFor;
+use Upbond\Auth\SDK\API\Header\Header;
+use Upbond\Auth\SDK\API\Header\Telemetry;
 use PHPUnit\Framework\TestCase;
 
 class HeaderTest extends TestCase
@@ -49,9 +49,9 @@ class HeaderTest extends TestCase
         $telemetryVal = uniqid();
         $header       = new Telemetry($telemetryVal);
 
-        $this->assertEquals('Auth0-Client', $header->getHeader());
+        $this->assertEquals('Auth-Client', $header->getHeader());
         $this->assertEquals($telemetryVal, $header->getValue());
-        $this->assertEquals("Auth0-Client: $telemetryVal\n", $header->get());
+        $this->assertEquals("Auth-Client: $telemetryVal\n", $header->get());
     }
 
     public function testForwardedFor()
@@ -59,8 +59,8 @@ class HeaderTest extends TestCase
         $forwardedForVal = uniqid();
         $header          = new ForwardedFor($forwardedForVal);
 
-        $this->assertEquals('Auth0-Forwarded-For', $header->getHeader());
+        $this->assertEquals('Auth-Forwarded-For', $header->getHeader());
         $this->assertEquals($forwardedForVal, $header->getValue());
-        $this->assertEquals("Auth0-Forwarded-For: $forwardedForVal\n", $header->get());
+        $this->assertEquals("Auth-Forwarded-For: $forwardedForVal\n", $header->get());
     }
 }

@@ -1,15 +1,15 @@
 <?php
-namespace Auth0\Tests\API\Management;
+namespace Auth\Tests\API\Management;
 
-use Auth0\SDK\API\Management;
-use Auth0\SDK\Exception\CoreException;
+use Upbond\Auth\SDK\API\Management;
+use Upbond\Auth\SDK\Exception\CoreException;
 
-use Auth0\Tests\API\ApiTests;
+use Auth\Tests\API\ApiTests;
 
 /**
  * Class RulesTest.
  *
- * @package Auth0\Tests\API\Management
+ * @package Auth\Tests\API\Management
  */
 class RulesTest extends ApiTests
 {
@@ -26,7 +26,7 @@ class RulesTest extends ApiTests
      *
      * @return void
      *
-     * @throws \Auth0\SDK\Exception\ApiException
+     * @throws \Upbond\Auth\SDK\Exception\ApiException
      */
     public static function setUpBeforeClass()
     {

@@ -1,14 +1,14 @@
 <?php
-namespace Auth0\Tests;
+namespace Auth\Tests;
 
-use Auth0\SDK\Auth0;
-use Auth0\SDK\Exception\ApiException;
-use Auth0\SDK\Exception\CoreException;
-use Auth0\SDK\Exception\InvalidTokenException;
-use Auth0\SDK\Store\SessionStore;
-use Auth0\Tests\Helpers\Tokens\AsymmetricVerifierTest;
-use Auth0\Tests\Helpers\Tokens\SymmetricVerifierTest;
-use Auth0\Tests\Traits\ErrorHelpers;
+use Upbond\Auth\SDK\Auth;
+use Upbond\Auth\SDK\Exception\ApiException;
+use Upbond\Auth\SDK\Exception\CoreException;
+use Upbond\Auth\SDK\Exception\InvalidTokenException;
+use Upbond\Auth\SDK\Store\SessionStore;
+use Auth\Tests\Helpers\Tokens\AsymmetricVerifierTest;
+use Auth\Tests\Helpers\Tokens\SymmetricVerifierTest;
+use Auth\Tests\Traits\ErrorHelpers;
 use Cache\Adapter\PHPArray\ArrayCachePool;
 use GuzzleHttp\Handler\MockHandler;
 use GuzzleHttp\HandlerStack;
@@ -18,17 +18,17 @@ use PHPUnit\Exception;
 use PHPUnit\Framework\TestCase;
 
 /**
- * Class Auth0Test
+ * Class AuthTest
  *
- * @package Auth0\Tests
+ * @package Auth\Tests
  */
-class Auth0Test extends TestCase
+class AuthTest extends TestCase
 {
 
     use ErrorHelpers;
 
     /**
-     * Basic Auth0 class config options.
+     * Basic Auth class config options.
      *
      * @var array
      */
@@ -80,7 +80,7 @@ class Auth0Test extends TestCase
      */
     public function testThatExchangeReturnsFalseIfNoCodePresent()
     {
-        $auth0 = new Auth0( self::$baseConfig );
+        $auth0 = new Auth( self::$baseConfig );
         $this->assertFalse( $auth0->exchange() );
     }
 
@@ -104,7 +104,7 @@ class Auth0Test extends TestCase
                 'handler' => HandlerStack::create($mock)
             ]
         ];
-        $auth0                    = new Auth0( self::$baseConfig + $add_config );
+        $auth0                    = new Auth( self::$baseConfig + $add_config );
         $_GET['code']             = uniqid();
         $_GET['state']            = '__test_state__';
         $_SESSION['auth0__state'] = '__test_state__';
@@ -137,7 +137,7 @@ class Auth0Test extends TestCase
                 'handler' => HandlerStack::create($mock)
             ]
         ];
-        $auth0                    = new Auth0( self::$baseConfig + $add_config );
+        $auth0                    = new Auth( self::$baseConfig + $add_config );
         $_GET['code']             = uniqid();
         $_SESSION['auth0__nonce'] = '__test_nonce__';
         $_GET['state']            = '__test_state__';
@@ -172,7 +172,7 @@ class Auth0Test extends TestCase
             'audience' => 'https://api.identifier',
             'guzzle_options' => [ 'handler' => HandlerStack::create($mock) ]
         ];
-        $auth0                    = new Auth0( self::$baseConfig + $add_config );
+        $auth0                    = new Auth( self::$baseConfig + $add_config );
         $_GET['code']             = uniqid();
         $_GET['state']            = '__test_state__';
         $_SESSION['auth0__state'] = '__test_state__';
@@ -204,7 +204,7 @@ class Auth0Test extends TestCase
             'id_token_alg' => 'HS256',
             'guzzle_options' => [ 'handler' => HandlerStack::create($mock) ]
         ];
-        $auth0                    = new Auth0( self::$baseConfig + $add_config );
+        $auth0                    = new Auth( self::$baseConfig + $add_config );
         $_GET['code']             = uniqid();
         $_SESSION['auth0__nonce'] = '__test_nonce__';
         $_GET['state']            = '__test_state__';
@@ -235,7 +235,7 @@ class Auth0Test extends TestCase
             'persist_access_token' => true,
             'guzzle_options' => [ 'handler' => HandlerStack::create($mock) ]
         ];
-        $auth0      = new Auth0( self::$baseConfig + $add_config );
+        $auth0      = new Auth( self::$baseConfig + $add_config );
 
         $_GET['code']             = uniqid();
         $_GET['state']            = '__test_state__';
@@ -275,7 +275,7 @@ class Auth0Test extends TestCase
             'persist_access_token' => true,
             'guzzle_options' => [ 'handler' => HandlerStack::create($mock) ]
         ];
-        $auth0      = new Auth0( self::$baseConfig + $add_config );
+        $auth0      = new Auth( self::$baseConfig + $add_config );
 
         $_GET['code']             = uniqid();
         $_GET['state']            = '__test_state__';
@@ -313,7 +313,7 @@ class Auth0Test extends TestCase
             'persist_access_token' => true,
             'guzzle_options' => [ 'handler' => $handler ]
         ];
-        $auth0      = new Auth0( self::$baseConfig + $add_config );
+        $auth0      = new Auth( self::$baseConfig + $add_config );
 
         $_GET['code']             = uniqid();
         $_SESSION['auth0__nonce'] = '__test_nonce__';
@@ -341,7 +341,7 @@ class Auth0Test extends TestCase
 
     public function testThatGetLoginUrlUsesDefaultValues()
     {
-        $auth0 = new Auth0( self::$baseConfig );
+        $auth0 = new Auth( self::$baseConfig );
 
         $parsed_url = parse_url( $auth0->getLoginUrl() );
 
@@ -359,7 +359,7 @@ class Auth0Test extends TestCase
 
     public function testThatGetLoginUrlAddsValues()
     {
-        $auth0 = new Auth0( self::$baseConfig );
+        $auth0 = new Auth( self::$baseConfig );
 
         $custom_params = [
             'connection' => '__test_connection__',
@@ -382,7 +382,7 @@ class Auth0Test extends TestCase
 
     public function testThatGetLoginUrlOverridesDefaultValues()
     {
-        $auth0 = new Auth0( self::$baseConfig );
+        $auth0 = new Auth( self::$baseConfig );
 
         $override_params = [
             'scope' => 'openid profile email',
@@ -405,7 +405,7 @@ class Auth0Test extends TestCase
     {
         $custom_config = self::$baseConfig;
 
-        $auth0 = new Auth0( $custom_config );
+        $auth0 = new Auth( $custom_config );
 
         $auth_url = $auth0->getLoginUrl();
 
@@ -437,7 +437,7 @@ class Auth0Test extends TestCase
                 'handler' => $handler,
             ]
         ]);
-        $auth0         = new Auth0( $custom_config );
+        $auth0         = new Auth( $custom_config );
 
         $_GET['code']             = uniqid();
         $_GET['state']            = '__test_state__';
@@ -475,7 +475,7 @@ class Auth0Test extends TestCase
             ]
         ]);
 
-        $auth0 = new Auth0( $custom_config );
+        $auth0 = new Auth( $custom_config );
 
         $_GET['state']            = '__test_state__';
         $_SESSION['auth0__state'] = '__test_state__';
@@ -493,7 +493,7 @@ class Auth0Test extends TestCase
     {
         $custom_config            = self::$baseConfig;
         $custom_config['max_age'] = 1000;
-        $auth0                    = new Auth0( $custom_config );
+        $auth0                    = new Auth( $custom_config );
 
         $auth_url = $auth0->getLoginUrl();
 
@@ -509,7 +509,7 @@ class Auth0Test extends TestCase
     {
         $custom_config            = self::$baseConfig;
         $custom_config['max_age'] = 1000;
-        $auth0                    = new Auth0( $custom_config );
+        $auth0                    = new Auth( $custom_config );
 
         $auth_url = $auth0->getLoginUrl(['max_age' => 1001]);
 
@@ -534,7 +534,7 @@ class Auth0Test extends TestCase
             'store' => new SessionStore(),
         ]);
 
-        $auth0    = new Auth0( $custom_config );
+        $auth0    = new Auth( $custom_config );
         $id_token = self::getIdToken();
 
         $_SESSION['auth0__nonce']   = '__test_nonce__';
@@ -551,7 +551,7 @@ class Auth0Test extends TestCase
     public function testThatIdTokenNonceIsCheckedWhenSet()
     {
         $custom_config = self::$baseConfig + ['id_token_alg' => 'HS256'];
-        $auth0         = new Auth0( $custom_config );
+        $auth0         = new Auth( $custom_config );
         $id_token      = self::getIdToken();
 
         $_SESSION['auth0__nonce'] = '__invalid_nonce__';
@@ -571,7 +571,7 @@ class Auth0Test extends TestCase
     public function testThatIdTokenAuthTimeIsCheckedWhenSet()
     {
         $custom_config = self::$baseConfig + ['id_token_alg' => 'HS256', 'max_age' => 10 ];
-        $auth0         = new Auth0( $custom_config );
+        $auth0         = new Auth( $custom_config );
         $id_token      = self::getIdToken();
 
         $_SESSION['auth0__nonce'] = '__test_nonce__';
@@ -590,7 +590,7 @@ class Auth0Test extends TestCase
 
     public function testThatDecodeIdTokenOptionsAreUsed()
     {
-        $auth0                    = new Auth0( self::$baseConfig + ['id_token_alg' => 'HS256'] );
+        $auth0                    = new Auth( self::$baseConfig + ['id_token_alg' => 'HS256'] );
         $_SESSION['auth0__nonce'] = '__test_nonce__';
         $e_message                = 'No exception caught';
         try {
@@ -613,7 +613,7 @@ class Auth0Test extends TestCase
     public function testThatIdTokenLeewayFromConstructorIsUsed()
     {
         $custom_config = self::$baseConfig + ['id_token_leeway' => 120, 'id_token_alg' => 'HS256'];
-        $auth0         = new Auth0( $custom_config );
+        $auth0         = new Auth( $custom_config );
 
         // Set the token expiration time past the default leeway of 60 seconds.
         $id_token = self::getIdToken(['exp' => time() - 100]);
@@ -634,7 +634,7 @@ class Auth0Test extends TestCase
         $handler->push( Middleware::history($request_history) );
 
         $pool = new ArrayCachePool();
-        $auth0 = new Auth0([
+        $auth0 = new Auth([
             'domain' => 'test.auth0.com',
             'client_id' => uniqid(),
             'redirect_uri' => uniqid(),

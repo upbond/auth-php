@@ -1,12 +1,12 @@
 <?php
 
-namespace Auth0\SDK\API\Management;
+namespace Upbond\Auth\SDK\API\Management;
 
 /**
  * Class Connections.
  * Handles requests to the Connections endpoint of the v2 Management API.
  *
- * @package Auth0\SDK\API\Management
+ * @package Upbond\Auth\SDK\API\Management
  */
 class Connections extends GenericResource
 {
@@ -125,7 +125,7 @@ class Connections extends GenericResource
      * Delete a specific User for a Connection.
      * Required scope: "delete:users"
      *
-     * @param string $id    Auth0 database Connection ID (user_id with strategy of "auth0").
+     * @param string $id    Auth database Connection ID (user_id with strategy of "auth0").
      * @param string $email Email of the user to delete.
      *
      * @return mixed|string

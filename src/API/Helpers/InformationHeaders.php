@@ -1,13 +1,13 @@
 <?php
 declare(strict_types=1);
 
-namespace Auth0\SDK\API\Helpers;
+namespace Upbond\Auth\SDK\API\Helpers;
 
 /**
  * Class InformationHeaders
  * Builds, extends, modifies, and formats SDK telemetry data.
  *
- * @package Auth0\SDK\API\Helpers
+ * @package Upbond\Auth\SDK\API\Helpers
  */
 class InformationHeaders
 {

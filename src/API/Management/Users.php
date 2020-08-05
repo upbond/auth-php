@@ -1,15 +1,15 @@
 <?php
 
-namespace Auth0\SDK\API\Management;
+namespace Upbond\Auth\SDK\API\Management;
 
-use Auth0\SDK\Exception\EmptyOrInvalidParameterException;
-use Auth0\SDK\Exception\InvalidPermissionsArrayException;
+use Upbond\Auth\SDK\Exception\EmptyOrInvalidParameterException;
+use Upbond\Auth\SDK\Exception\InvalidPermissionsArrayException;
 
 /**
  * Class Users.
  * Handles requests to the Users endpoint of the v2 Management API.
  *
- * @package Auth0\SDK\API\Management
+ * @package Upbond\Auth\SDK\API\Management
  */
 class Users extends GenericResource
 {

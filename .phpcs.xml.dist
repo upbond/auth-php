@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
-<ruleset name="Auth0-PHP" namespace="Auth0PHP\CS\Standard">
-    <description>A custom coding standard for the Auth0 PHP SDK</description>
+<ruleset name="Auth-PHP" namespace="AuthPHP\CS\Standard">
+    <description>A custom coding standard for the Auth PHP SDK</description>
 
     <file>./src</file>
 

@@ -1,9 +1,9 @@
 <?php
 declare(strict_types=1);
 
-namespace Auth0\SDK\Helpers\Tokens;
+namespace Upbond\Auth\SDK\Helpers\Tokens;
 
-use Auth0\SDK\Exception\InvalidTokenException;
+use Upbond\Auth\SDK\Exception\InvalidTokenException;
 use InvalidArgumentException;
 use Lcobucci\JWT\Parser;
 use Lcobucci\JWT\Token;
@@ -11,7 +11,7 @@ use Lcobucci\JWT\Token;
 /**
  * Class SignatureVerifier
  *
- * @package Auth0\SDK\Helpers
+ * @package Upbond\Auth\SDK\Helpers
  */
 abstract class SignatureVerifier
 {

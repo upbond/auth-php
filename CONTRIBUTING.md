@@ -17,7 +17,7 @@ echo '#!/bin/sh' > .git/hooks/pre-commit && echo 'composer pre-commit' >> .git/h
 
 To run integration tests on the SDK, you'll need to create a `.env` file in the root of this package with the following entries:
 
-- `DOMAIN` - Auth0 domain for your test tenant
+- `DOMAIN` - Auth domain for your test tenant
 - `APP_CLIENT_ID` - Client ID for a Regular Web Application within your test tenant
 - `APP_CLIENT_SECRET` - Client Secret for a Regular Web Application within your test tenant
 

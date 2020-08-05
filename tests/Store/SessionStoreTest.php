@@ -1,7 +1,7 @@
 <?php
-namespace Auth0\Tests\Store;
+namespace Auth\Tests\Store;
 
-use Auth0\SDK\Store\SessionStore;
+use Upbond\Auth\SDK\Store\SessionStore;
 use PHPUnit\Framework\TestCase;
 
 /**
@@ -18,7 +18,7 @@ class SessionStoreTest extends TestCase
     /**
      * Session value to test.
      */
-    const TEST_VALUE = '__Auth0__';
+    const TEST_VALUE = '__Auth__';
 
     /**
      * Expected cookie lifetime of 1 week.

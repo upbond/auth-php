@@ -1,6 +1,6 @@
 <?php
 
-namespace Auth0\SDK\API\Management;
+namespace Upbond\Auth\SDK\API\Management;
 
 class DeviceCredentials extends GenericResource
 {

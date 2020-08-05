@@ -1,16 +1,16 @@
 <?php
-namespace Auth0\Tests\API\Management;
+namespace Auth\Tests\API\Management;
 
-use Auth0\SDK\API\Helpers\InformationHeaders;
-use Auth0\SDK\API\Management;
-use Auth0\Tests\Traits\ErrorHelpers;
+use Upbond\Auth\SDK\API\Helpers\InformationHeaders;
+use Upbond\Auth\SDK\API\Management;
+use Auth\Tests\Traits\ErrorHelpers;
 use GuzzleHttp\Psr7\Response;
 use PHPUnit\Framework\TestCase;
 
 /**
  * Class ConnectionsTestMocked.
  *
- * @package Auth0\Tests\API\Management
+ * @package Auth\Tests\API\Management
  */
 class ConnectionsTestMocked extends TestCase
 {
@@ -60,7 +60,7 @@ class ConnectionsTestMocked extends TestCase
 
         $headers = $api->getHistoryHeaders();
         $this->assertEquals( 'Bearer __api_token__', $headers['Authorization'][0] );
-        $this->assertEquals( self::$expectedTelemetry, $headers['Auth0-Client'][0] );
+        $this->assertEquals( self::$expectedTelemetry, $headers['Auth-Client'][0] );
     }
 
 
@@ -269,7 +269,7 @@ class ConnectionsTestMocked extends TestCase
 
         $headers = $api->getHistoryHeaders();
         $this->assertEquals( 'Bearer __api_token__', $headers['Authorization'][0] );
-        $this->assertEquals( self::$expectedTelemetry, $headers['Auth0-Client'][0] );
+        $this->assertEquals( self::$expectedTelemetry, $headers['Auth-Client'][0] );
     }
 
     /**
@@ -293,7 +293,7 @@ class ConnectionsTestMocked extends TestCase
 
         $headers = $api->getHistoryHeaders();
         $this->assertEquals( 'Bearer __api_token__', $headers['Authorization'][0] );
-        $this->assertEquals( self::$expectedTelemetry, $headers['Auth0-Client'][0] );
+        $this->assertEquals( self::$expectedTelemetry, $headers['Auth-Client'][0] );
     }
 
     /**
@@ -320,7 +320,7 @@ class ConnectionsTestMocked extends TestCase
 
         $headers = $api->getHistoryHeaders();
         $this->assertEquals( 'Bearer __api_token__', $headers['Authorization'][0] );
-        $this->assertEquals( self::$expectedTelemetry, $headers['Auth0-Client'][0] );
+        $this->assertEquals( self::$expectedTelemetry, $headers['Auth-Client'][0] );
         $this->assertEquals( 'application/json', $headers['Content-Type'][0] );
     }
 
@@ -377,7 +377,7 @@ class ConnectionsTestMocked extends TestCase
 
         $headers = $api->getHistoryHeaders();
         $this->assertEquals( 'Bearer __api_token__', $headers['Authorization'][0] );
-        $this->assertEquals( self::$expectedTelemetry, $headers['Auth0-Client'][0] );
+        $this->assertEquals( self::$expectedTelemetry, $headers['Auth-Client'][0] );
         $this->assertEquals( 'application/json', $headers['Content-Type'][0] );
     }
 }

@@ -1,13 +1,13 @@
 <?php
-namespace Auth0\Tests\API\Authentication;
+namespace Auth\Tests\API\Authentication;
 
-use Auth0\SDK\API\Authentication;
-use Auth0\Tests\MockApi;
+use Upbond\Auth\SDK\API\Authentication;
+use Auth\Tests\MockApi;
 
 /**
  * Class MockAuthenticationApi
  *
- * @package Auth0\Tests\API\Authentication
+ * @package Auth\Tests\API\Authentication
  */
 class MockAuthenticationApi extends MockApi
 {

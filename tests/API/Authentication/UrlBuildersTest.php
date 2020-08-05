@@ -1,7 +1,7 @@
 <?php
-namespace Auth0\Tests\API\Authentication;
+namespace Auth\Tests\API\Authentication;
 
-use Auth0\SDK\API\Authentication;
+use Upbond\Auth\SDK\API\Authentication;
 use PHPUnit\Framework\TestCase;
 
 class UrlBuildersTest extends TestCase

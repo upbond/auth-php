@@ -1,14 +1,14 @@
 <?php
-namespace Auth0\Tests\Helpers;
+namespace Auth\Tests\Helpers;
 
-use Auth0\SDK\Helpers\TransientStoreHandler;
-use Auth0\SDK\Store\SessionStore;
+use Upbond\Auth\SDK\Helpers\TransientStoreHandler;
+use Upbond\Auth\SDK\Store\SessionStore;
 use PHPUnit\Framework\TestCase;
 
 /**
  * Class TransientStoreHandlerTest
  *
- * @package Auth0\Tests\Helpers
+ * @package Auth\Tests\Helpers
  */
 class TransientStoreHandlerTest extends TestCase
 {

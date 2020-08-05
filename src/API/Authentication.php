@@ -2,44 +2,44 @@
 /**
  * Authentication API wrapper
  *
- * @package Auth0\SDK\API
+ * @package Upbond\Auth\SDK\API
  *
  * @see https://auth0.com/docs/api/authentication
  */
 declare(strict_types=1);
 
-namespace Auth0\SDK\API;
+namespace Upbond\Auth\SDK\API;
 
-use Auth0\SDK\API\Header\AuthorizationBearer;
-use Auth0\SDK\API\Header\ForwardedFor;
-use Auth0\SDK\API\Helpers\ApiClient;
-use Auth0\SDK\Exception\ApiException;
+use Upbond\Auth\SDK\API\Header\AuthorizationBearer;
+use Upbond\Auth\SDK\API\Header\ForwardedFor;
+use Upbond\Auth\SDK\API\Helpers\ApiClient;
+use Upbond\Auth\SDK\Exception\ApiException;
 use GuzzleHttp\Psr7;
 
 /**
  * Class Authentication
  *
- * @package Auth0\SDK\API
+ * @package Upbond\Auth\SDK\API
  */
 class Authentication
 {
 
     /**
-     * Domain for the Auth0 Tenant.
+     * Domain for the Auth Tenant.
      *
      * @var string
      */
     private $domain;
 
     /**
-     * Client ID for the Auth0 Application.
+     * Client ID for the Auth Application.
      *
      * @var null|string
      */
     private $client_id;
 
     /**
-     * Client Secret for the Auth0 Application.
+     * Client Secret for the Auth Application.
      *
      * @var null|string
      */
@@ -226,7 +226,7 @@ class Authentication
     /**
      * Builds and returns a logout URL to terminate an SSO session.
      *
-     * @param null|string         $returnTo  URL to return to after logging in; must be white-listed in Auth0.
+     * @param null|string         $returnTo  URL to return to after logging in; must be white-listed in Auth.
      * @param null|string|boolean $client_id Client ID to use App-specific returnTo URLs. True to use class prop.
      * @param boolean             $federated Attempt a federated logout.
      *
@@ -421,7 +421,7 @@ class Authentication
      *      - options.realm    Database realm to use; required.
      *      - options.scope    Access token scope requested.
      *      - options.audience API audience identifier for access token.
-     * @param string|null $ip_address Pass in an IP address to set an Auth0-Forwarded-For header.
+     * @param string|null $ip_address Pass in an IP address to set an Auth-Forwarded-For header.
      *
      * @return array
      *
@@ -458,7 +458,7 @@ class Authentication
      *      - options.password Password of the user logging in; required.
      *      - options.scope    Access token scope requested.
      *      - options.audience API audience identifier for access token.
-     * @param string|null $ip_address Pass in an IP address to set an Auth0-Forwarded-For header.
+     * @param string|null $ip_address Pass in an IP address to set an Auth-Forwarded-For header.
      *
      * @return array
      *

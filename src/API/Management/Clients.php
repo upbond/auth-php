@@ -1,12 +1,12 @@
 <?php
 
-namespace Auth0\SDK\API\Management;
+namespace Upbond\Auth\SDK\API\Management;
 
 /**
  * Class Clients.
  * Handles requests to the Clients endpoint of the v2 Management API.
  *
- * @package Auth0\SDK\API\Management
+ * @package Upbond\Auth\SDK\API\Management
  */
 class Clients extends GenericResource
 {

@@ -1,7 +1,7 @@
 <?php
-namespace Auth0\Tests\Helpers\Cache;
+namespace Auth\Tests\Helpers\Cache;
 
-use Auth0\SDK\Helpers\Cache\NoCacheHandler;
+use Upbond\Auth\SDK\Helpers\Cache\NoCacheHandler;
 use PHPUnit\Framework\TestCase;
 
 class NoCacheHandlerTest extends TestCase

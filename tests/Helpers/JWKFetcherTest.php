@@ -1,7 +1,7 @@
 <?php
-namespace Auth0\Tests\Helpers;
+namespace Auth\Tests\Helpers;
 
-use Auth0\SDK\Helpers\JWKFetcher;
+use Upbond\Auth\SDK\Helpers\JWKFetcher;
 use Cache\Adapter\PHPArray\ArrayCachePool;
 use GuzzleHttp\Psr7\Response;
 use PHPUnit\Framework\TestCase;
@@ -9,7 +9,7 @@ use PHPUnit\Framework\TestCase;
 /**
  * Class JWKFetcherTest.
  *
- * @package Auth0\Tests\Helpers\Cache
+ * @package Auth\Tests\Helpers\Cache
  */
 class JWKFetcherTest extends TestCase
 {

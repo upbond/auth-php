@@ -1,4 +1,4 @@
-# Auth0 PHP SDK
+# Auth PHP SDK
 
 [![CircleCI](https://img.shields.io/circleci/project/github/auth0/auth0-PHP/master.svg)](https://circleci.com/gh/auth0/auth0-PHP)
 [![Latest Stable Version](https://poser.pugx.org/auth0/auth0-php/v/stable)](https://packagist.org/packages/auth0/auth0-php)
@@ -6,7 +6,7 @@
 [![License](https://poser.pugx.org/auth0/auth0-php/license)](https://packagist.org/packages/auth0/auth0-php)
 [![Total Downloads](https://poser.pugx.org/auth0/auth0-php/downloads)](https://packagist.org/packages/auth0/auth0-php)
 
-The Auth0 PHP SDK provides straight-forward and tested methods for accessing Authentication and Management API endpoints. This README describes how to get started and provides simple examples of how to use the SDK.
+The Auth PHP SDK provides straight-forward and tested methods for accessing Authentication and Management API endpoints. This README describes how to get started and provides simple examples of how to use the SDK.
 
 ## Table of Contents
 
@@ -16,7 +16,7 @@ The Auth0 PHP SDK provides straight-forward and tested methods for accessing Aut
 - [Contributing](#contributing)
 - [Support + Feedback](#support--feedback)
 - [Vulnerability Reporting](#vulnerability-reporting)
-- [What is Auth0](#what-is-auth0)
+- [What is Auth](#what-is-auth0)
 - [License](#license)
 
 ## Documentation
@@ -38,11 +38,11 @@ More details on this process as well as a manual option can be found on the [mai
 
 ## Getting Started
 
-To get started, you'll need a [free Auth0 account](https://auth0.com/signup) and an [Application](https://auth0.com/docs/applications). Use the settings from the Auth0 Application in the code snippet below:
+To get started, you'll need a [free Auth account](https://auth0.com/signup) and an [Application](https://auth0.com/docs/applications). Use the settings from the Auth Application in the code snippet below:
 
 ```php
-// Instantiate the base Auth0 class.
-$auth0 = new Auth0([
+// Instantiate the base Auth class.
+$auth0 = new Auth([
 	// The values below are found on the Application settings tab.
 	'domain' => 'your-tenant.auth0.com',
 	'client_id' => 'application_client_id',
@@ -60,23 +60,23 @@ $auth0 = new Auth0([
 
 We appreciate feedback and contribution to this repo! Before you get started, please see the following:
 
-- [Auth0's general contribution guidelines](https://github.com/auth0/open-source-template/blob/master/GENERAL-CONTRIBUTING.md)
-- [Auth0's code of conduct guidelines](https://github.com/auth0/open-source-template/blob/master/CODE-OF-CONDUCT.md)
+- [Auth's general contribution guidelines](https://github.com/auth0/open-source-template/blob/master/GENERAL-CONTRIBUTING.md)
+- [Auth's code of conduct guidelines](https://github.com/auth0/open-source-template/blob/master/CODE-OF-CONDUCT.md)
 - [This repo's contribution guide](CONTRIBUTING.md)
 
 ## Support + Feedback
 
 - Use [Community](https://community.auth0.com/) for usage, questions, specific cases
 - Use [Issues](https://github.com/auth0/auth0-PHP/issues) here for code-level support and bug reports
-- Customers with a paid Auth0 subscription can use the [Support Center](https://support.auth0.com/) to submit a ticket to our support specialists.
+- Customers with a paid Auth subscription can use the [Support Center](https://support.auth0.com/) to submit a ticket to our support specialists.
 
 ## Vulnerability Reporting
 
 Please do not report security vulnerabilities on the public GitHub issue tracker. The [Responsible Disclosure Program](https://auth0.com/whitehat) details the procedure for disclosing security issues.
 
-## What is Auth0?
+## What is Auth?
 
-Auth0 helps you to easily:
+Auth helps you to easily:
 
 - implement authentication with multiple identity providers, including social (e.g., Google, Facebook, Microsoft, LinkedIn, GitHub, Twitter, etc), or enterprise (e.g., Windows Azure AD, Google Apps, Active Directory, ADFS, SAML, etc.)
 - log in users with username/password databases, passwordless, or multi-factor authentication
@@ -85,8 +85,8 @@ Auth0 helps you to easily:
 - access demographics and analytics detailing how, when, and where users are logging in
 - enrich user profiles from other data sources using customizable JavaScript rules
 
-[Why Auth0?](https://auth0.com/why-auth0)
+[Why Auth?](https://auth0.com/why-auth0)
 
 ## License
 
-The Auth0-PHP SDK is licensed under MIT - [LICENSE](LICENSE.txt)
+The Auth-PHP SDK is licensed under MIT - [LICENSE](LICENSE.txt)

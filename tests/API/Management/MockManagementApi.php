@@ -1,9 +1,9 @@
 <?php
-namespace Auth0\Tests\API\Management;
+namespace Auth\Tests\API\Management;
 
-use Auth0\Tests\MockApi;
+use Auth\Tests\MockApi;
 
-use Auth0\SDK\API\Management;
+use Upbond\Auth\SDK\API\Management;
 
 use GuzzleHttp\Handler\MockHandler;
 use GuzzleHttp\HandlerStack;
@@ -12,7 +12,7 @@ use GuzzleHttp\Middleware;
 /**
  * Class MockManagementApi
  *
- * @package Auth0\Tests\API\Management
+ * @package Auth\Tests\API\Management
  */
 class MockManagementApi extends MockApi
 {

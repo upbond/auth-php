@@ -1,12 +1,12 @@
 <?php
 
-namespace Auth0\SDK\API\Management;
+namespace Upbond\Auth\SDK\API\Management;
 
 /**
  * Class Logs.
  * Access to the v2 Management API Logs endpoint.
  *
- * @package Auth0\SDK\API\Management
+ * @package Upbond\Auth\SDK\API\Management
  */
 class Logs extends GenericResource
 {

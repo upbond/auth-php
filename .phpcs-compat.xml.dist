@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
-<ruleset name="Auth0-PHP-PHPCompatibility" namespace="Auth0PHP\CS\Standard">
-    <description>PHPCompatibility check for Auth0 PHP SDK</description>
+<ruleset name="Auth-PHP-PHPCompatibility" namespace="AuthPHP\CS\Standard">
+    <description>PHPCompatibility check for Auth PHP SDK</description>
     <file>./src</file>
     <arg name="extensions" value="php"/>
     <arg value="sp"/>

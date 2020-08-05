@@ -1,13 +1,13 @@
 <?php
-namespace Auth0\SDK\API\Helpers;
+namespace Upbond\Auth\SDK\API\Helpers;
 
-use Auth0\SDK\API\Header\ContentType;
-use Auth0\SDK\API\Header\Telemetry;
+use Upbond\Auth\SDK\API\Header\ContentType;
+use Upbond\Auth\SDK\API\Header\Telemetry;
 
 /**
  * Class ApiClient
  *
- * @package Auth0\SDK\API\Helpers
+ * @package Upbond\Auth\SDK\API\Helpers
  */
 class ApiClient
 {
@@ -109,7 +109,7 @@ class ApiClient
      *
      * @var string|null
      *
-     * @see \Auth0\SDK\API\Helpers\RequestBuilder::call()
+     * @see \Upbond\Auth\SDK\API\Helpers\RequestBuilder::call()
      */
     protected $returnType;
 

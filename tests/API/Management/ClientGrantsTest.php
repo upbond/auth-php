@@ -1,15 +1,15 @@
 <?php
 
-namespace Auth0\Tests\API;
+namespace Auth\Tests\API;
 
-use Auth0\SDK\API\Management;
-use Auth0\SDK\Exception\CoreException;
+use Upbond\Auth\SDK\API\Management;
+use Upbond\Auth\SDK\Exception\CoreException;
 
 /**
  * Class ClientGrantsTest.
- * Tests the Auth0\SDK\API\Management\ClientGrants class.
+ * Tests the Upbond\Auth\SDK\API\Management\ClientGrants class.
  *
- * @package Auth0\Tests\API
+ * @package Auth\Tests\API
  */
 class ClientGrantsTest extends ApiTests
 {
@@ -38,7 +38,7 @@ class ClientGrantsTest extends ApiTests
 
     /**
      * @throws CoreException
-     * @throws \Auth0\SDK\Exception\ApiException
+     * @throws \Upbond\Auth\SDK\Exception\ApiException
      * @throws \Exception
      */
     public static function setUpBeforeClass()

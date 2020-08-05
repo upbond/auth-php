@@ -1,13 +1,13 @@
 {
-  "name": "auth0/auth0-php",
-  "description": "Auth0 PHP SDK.",
-  "homepage": "https://github.com/auth0/auth0-PHP",
+  "name": "upbond/auth-php",
+  "description": "Auth PHP SDK.",
+  "homepage": "https://github.com/upbond/auth-php",
   "license": "MIT",
   "authors": [
     {
-      "name": "Auth0",
-      "email": "support@auth0.com",
-      "homepage": "http://www.auth0.com/"
+      "name": "Upbond",
+      "email": "support@upbond.io",
+      "homepage": "https://upbond.io/"
     }
   ],
   "require": {
@@ -27,12 +27,12 @@
   },
   "autoload": {
     "psr-4": {
-      "Auth0\\SDK\\": "src/"
+      "Upbond\\Auth\\SDK\\": "src/"
     }
   },
   "autoload-dev": {
     "psr-4": {
-      "Auth0\\Tests\\": "tests/"
+      "Upbond\\Auth\\Tests\\": "tests/"
     }
   },
   "scripts": {

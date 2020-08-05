@@ -1,9 +1,9 @@
 <?php
-namespace Auth0\Tests;
+namespace Auth\Tests;
 
-use Auth0\SDK\API\Authentication;
-use Auth0\SDK\API\Management;
-use Auth0\SDK\Helpers\JWKFetcher;
+use Upbond\Auth\SDK\API\Authentication;
+use Upbond\Auth\SDK\API\Management;
+use Upbond\Auth\SDK\Helpers\JWKFetcher;
 use GuzzleHttp\Handler\MockHandler;
 use GuzzleHttp\HandlerStack;
 use GuzzleHttp\Middleware;
@@ -12,7 +12,7 @@ use GuzzleHttp\Psr7\Request;
 /**
  * Class MockApi
  *
- * @package Auth0\Tests
+ * @package Auth\Tests
  */
 abstract class MockApi
 {

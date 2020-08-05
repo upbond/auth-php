@@ -1,29 +1,29 @@
 <?php
-namespace Auth0\Tests;
+namespace Auth\Tests;
 
-use Auth0\SDK\Auth0;
-use Auth0\SDK\Exception\ApiException;
-use Auth0\SDK\Exception\CoreException;
-use Auth0\SDK\Exception\InvalidTokenException;
-use Auth0\SDK\Store\CookieStore;
-use Auth0\SDK\Store\EmptyStore;
-use Auth0\SDK\Store\SessionStore;
-use Auth0\SDK\Store\StoreInterface;
-use Auth0\Tests\Traits\ErrorHelpers;
+use Upbond\Auth\SDK\Auth;
+use Upbond\Auth\SDK\Exception\ApiException;
+use Upbond\Auth\SDK\Exception\CoreException;
+use Upbond\Auth\SDK\Exception\InvalidTokenException;
+use Upbond\Auth\SDK\Store\CookieStore;
+use Upbond\Auth\SDK\Store\EmptyStore;
+use Upbond\Auth\SDK\Store\SessionStore;
+use Upbond\Auth\SDK\Store\StoreInterface;
+use Auth\Tests\Traits\ErrorHelpers;
 use PHPUnit\Framework\TestCase;
 
 /**
- * Class Auth0StoreTest
+ * Class AuthStoreTest
  *
- * @package Auth0\Tests
+ * @package Auth\Tests
  */
-class Auth0StoreTest extends TestCase
+class AuthStoreTest extends TestCase
 {
 
     use ErrorHelpers;
 
     /**
-     * Basic Auth0 class config options.
+     * Basic Auth class config options.
      *
      * @var array
      */
@@ -67,10 +67,10 @@ class Auth0StoreTest extends TestCase
             }
         };
 
-        $auth0 = new Auth0(self::$baseConfig + ['store' => $storeMock]);
+        $auth0 = new Auth(self::$baseConfig + ['store' => $storeMock]);
         $auth0->setUser(['sub' => '__test_user__']);
 
-        $auth0 = new Auth0(self::$baseConfig + ['store' => $storeMock]);
+        $auth0 = new Auth(self::$baseConfig + ['store' => $storeMock]);
         $this->assertEquals('__test_custom_store__user__', $auth0->getUser());
     }
 
@@ -80,7 +80,7 @@ class Auth0StoreTest extends TestCase
      */
     public function testThatSessionStoreIsUsedAsDefault()
     {
-        $auth0 = new Auth0(self::$baseConfig);
+        $auth0 = new Auth(self::$baseConfig);
         $auth0->setUser(['sub' => '__test_user__']);
 
         $this->assertEquals($_SESSION['auth0__user'], $auth0->getUser());
@@ -92,7 +92,7 @@ class Auth0StoreTest extends TestCase
      */
     public function testThatSessionStoreIsUsedIfPassedIsInvalid()
     {
-        $auth0 = new Auth0(self::$baseConfig + ['store' => new \stdClass()]);
+        $auth0 = new Auth(self::$baseConfig + ['store' => new \stdClass()]);
         $auth0->setUser(['sub' => '__test_user__']);
 
         $this->assertEquals($_SESSION['auth0__user'], $auth0->getUser());
@@ -100,7 +100,7 @@ class Auth0StoreTest extends TestCase
 
     public function testThatCookieStoreIsUsedAsDefaultTransient()
     {
-        $auth0 = new Auth0(self::$baseConfig);
+        $auth0 = new Auth(self::$baseConfig);
         @$auth0->getLoginUrl(['nonce' => '__test_cookie_nonce__']);
 
         $this->assertEquals('__test_cookie_nonce__', $_COOKIE['auth0__nonce']);
@@ -108,7 +108,7 @@ class Auth0StoreTest extends TestCase
 
     public function testThatTransientCanBeSetToAnotherStoreInterface()
     {
-        $auth0 = new Auth0(self::$baseConfig + ['transient_store' => new SessionStore()]);
+        $auth0 = new Auth(self::$baseConfig + ['transient_store' => new SessionStore()]);
         @$auth0->getLoginUrl(['nonce' => '__test_session_nonce__']);
 
         $this->assertEquals('__test_session_nonce__', $_SESSION['auth0__nonce']);
@@ -120,10 +120,10 @@ class Auth0StoreTest extends TestCase
      */
     public function testThatEmptyStoreInterfaceStoresNothing()
     {
-        $auth0 = new Auth0(self::$baseConfig + ['store' => new EmptyStore()]);
+        $auth0 = new Auth(self::$baseConfig + ['store' => new EmptyStore()]);
         $auth0->setUser(['sub' => '__test_user__']);
 
-        $auth0 = new Auth0(self::$baseConfig);
+        $auth0 = new Auth(self::$baseConfig);
         $this->assertNull($auth0->getUser());
     }
 
@@ -133,10 +133,10 @@ class Auth0StoreTest extends TestCase
      */
     public function testThatNoUserPersistenceUsesEmptyStore()
     {
-        $auth0 = new Auth0(self::$baseConfig + ['persist_user' => false]);
+        $auth0 = new Auth(self::$baseConfig + ['persist_user' => false]);
         $auth0->setUser(['sub' => '__test_user__']);
 
-        $auth0 = new Auth0(self::$baseConfig + ['persist_user' => false]);
+        $auth0 = new Auth(self::$baseConfig + ['persist_user' => false]);
         $this->assertNull($auth0->getUser());
     }
 }

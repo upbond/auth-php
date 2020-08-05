@@ -1,5 +1,5 @@
 <?php
-namespace Auth0\SDK\API\Header;
+namespace Upbond\Auth\SDK\API\Header;
 
 class ContentType extends Header
 {

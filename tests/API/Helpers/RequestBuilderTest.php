@@ -1,10 +1,10 @@
 <?php
-namespace Auth0\Tests\API;
+namespace Auth\Tests\API;
 
-use Auth0\SDK\API\Helpers\RequestBuilder;
-use Auth0\SDK\API\Management;
-use Auth0\SDK\Exception\CoreException;
-use Auth0\Tests\API\Management\MockManagementApi;
+use Upbond\Auth\SDK\API\Helpers\RequestBuilder;
+use Upbond\Auth\SDK\API\Management;
+use Upbond\Auth\SDK\Exception\CoreException;
+use Auth\Tests\API\Management\MockManagementApi;
 
 use GuzzleHttp\Handler\MockHandler;
 use GuzzleHttp\HandlerStack;
@@ -13,9 +13,9 @@ use GuzzleHttp\Psr7\Response;
 
 /**
  * Class RequestBuilderTest
- * Tests the Auth0\SDK\API\Helpers\RequestBuilder class.
+ * Tests the Upbond\Auth\SDK\API\Helpers\RequestBuilder class.
  *
- * @package Auth0\Tests\API
+ * @package Auth\Tests\API
  */
 class RequestBuilderTest extends ApiTests
 {

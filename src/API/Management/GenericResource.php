@@ -1,14 +1,14 @@
-<?php namespace Auth0\SDK\API\Management;
+<?php namespace Upbond\Auth\SDK\API\Management;
 
-use Auth0\SDK\API\Helpers\ApiClient;
-use Auth0\SDK\Exception\EmptyOrInvalidParameterException;
-use Auth0\SDK\Exception\InvalidPermissionsArrayException;
+use Upbond\Auth\SDK\API\Helpers\ApiClient;
+use Upbond\Auth\SDK\Exception\EmptyOrInvalidParameterException;
+use Upbond\Auth\SDK\Exception\InvalidPermissionsArrayException;
 
 /**
  * Class GenericResource.
  * Extended by Management API endpoints classes.
  *
- * @package Auth0\SDK\API\Management
+ * @package Upbond\Auth\SDK\API\Management
  */
 class GenericResource
 {

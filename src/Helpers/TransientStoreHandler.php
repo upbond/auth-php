@@ -1,14 +1,14 @@
 <?php
 declare(strict_types=1);
 
-namespace Auth0\SDK\Helpers;
+namespace Upbond\Auth\SDK\Helpers;
 
-use Auth0\SDK\Store\StoreInterface;
+use Upbond\Auth\SDK\Store\StoreInterface;
 
 /**
  * Class TransientStoreHandler
  *
- * @package Auth0\SDK\Helpers
+ * @package Upbond\Auth\SDK\Helpers
  */
 class TransientStoreHandler
 {

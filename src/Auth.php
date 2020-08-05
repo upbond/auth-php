@@ -1,37 +1,37 @@
 <?php
 /**
- * Main entry point to the Auth0 SDK
+ * Main entry point to the Auth SDK
  *
- * @package Auth0\SDK
+ * @package Upbond\Auth\SDK
  */
 
-namespace Auth0\SDK;
+namespace Upbond\Auth\SDK;
 
-use Auth0\SDK\Exception\CoreException;
-use Auth0\SDK\Exception\ApiException;
-use Auth0\SDK\Exception\InvalidTokenException;
-use Auth0\SDK\Helpers\Cache\NoCacheHandler;
-use Auth0\SDK\Helpers\JWKFetcher;
-use Auth0\SDK\Helpers\Tokens\IdTokenVerifier;
-use Auth0\SDK\Helpers\Tokens\AsymmetricVerifier;
-use Auth0\SDK\Helpers\Tokens\SymmetricVerifier;
-use Auth0\SDK\Helpers\TransientStoreHandler;
-use Auth0\SDK\Store\CookieStore;
-use Auth0\SDK\Store\EmptyStore;
-use Auth0\SDK\Store\SessionStore;
-use Auth0\SDK\Store\StoreInterface;
-use Auth0\SDK\API\Authentication;
+use Upbond\Auth\SDK\Exception\CoreException;
+use Upbond\Auth\SDK\Exception\ApiException;
+use Upbond\Auth\SDK\Exception\InvalidTokenException;
+use Upbond\Auth\SDK\Helpers\Cache\NoCacheHandler;
+use Upbond\Auth\SDK\Helpers\JWKFetcher;
+use Upbond\Auth\SDK\Helpers\Tokens\IdTokenVerifier;
+use Upbond\Auth\SDK\Helpers\Tokens\AsymmetricVerifier;
+use Upbond\Auth\SDK\Helpers\Tokens\SymmetricVerifier;
+use Upbond\Auth\SDK\Helpers\TransientStoreHandler;
+use Upbond\Auth\SDK\Store\CookieStore;
+use Upbond\Auth\SDK\Store\EmptyStore;
+use Upbond\Auth\SDK\Store\SessionStore;
+use Upbond\Auth\SDK\Store\StoreInterface;
+use Upbond\Auth\SDK\API\Authentication;
 
 use GuzzleHttp\Exception\RequestException;
 use Psr\SimpleCache\CacheInterface;
 
 /**
- * Class Auth0
- * Provides access to Auth0 authentication functionality.
+ * Class Auth
+ * Provides access to Auth authentication functionality.
  *
- * @package Auth0\SDK
+ * @package Upbond\Auth\SDK
  */
-class Auth0
+class Auth
 {
     const TRANSIENT_STATE_KEY = 'state';
     const TRANSIENT_NONCE_KEY = 'nonce';
@@ -49,21 +49,21 @@ class Auth0
     ];
 
     /**
-     * Auth0 Domain, found in Application settings
+     * Auth Domain, found in Application settings
      *
      * @var string
      */
     protected $domain;
 
     /**
-     * Auth0 Client ID, found in Application settings
+     * Auth Client ID, found in Application settings
      *
      * @var string
      */
     protected $clientId;
 
     /**
-     * Auth0 Client Secret, found in Application settings
+     * Auth Client Secret, found in Application settings
      *
      * @var string
      */
@@ -98,7 +98,7 @@ class Auth0
     protected $scope = 'openid profile email';
 
     /**
-     * Auth0 Refresh Token
+     * Auth Refresh Token
      *
      * @var string
      */
@@ -141,7 +141,7 @@ class Auth0
     protected $store;
 
     /**
-     * The user object provided by Auth0
+     * The user object provided by Auth
      *
      * @var string
      */
@@ -150,7 +150,7 @@ class Auth0
     /**
      * Authentication Client.
      *
-     * @var \Auth0\SDK\API\Authentication
+     * @var \Upbond\Auth\SDK\API\Authentication
      */
     protected $authentication;
 
@@ -214,10 +214,10 @@ class Auth0
     protected $cacheHandler;
 
     /**
-     * BaseAuth0 Constructor.
+     * BaseAuth Constructor.
      *
      * @param array $config - Required configuration options.
-     *     - domain                 (String)  Required. Auth0 domain for your tenant
+     *     - domain                 (String)  Required. Auth domain for your tenant
      *     - client_id              (String)  Required. Client ID found in the Application settings
      *     - redirect_uri           (String)  Required. Authentication callback URI
      *     - client_secret          (String)  Optional. Client Secret found in the Application settings
@@ -352,7 +352,7 @@ class Auth0
      *
      * @return void
      *
-     * @see \Auth0\SDK\API\Authentication::get_authorize_link()
+     * @see \Upbond\Auth\SDK\API\Authentication::get_authorize_link()
      * @see https://auth0.com/docs/api/authentication#login
      */
     public function login($state = null, $connection = null, array $additionalParams = [])
@@ -562,8 +562,8 @@ class Auth0
      * @param array $options Options for the token endpoint request.
      *      - options.scope         Access token scope requested; optional.
      *
-     * @throws CoreException If the Auth0 object does not have access token and refresh token
-     * @throws ApiException If the Auth0 API did not renew access and ID token properly
+     * @throws CoreException If the Auth object does not have access token and refresh token
+     * @throws ApiException If the Auth API did not renew access and ID token properly
      * @link   https://auth0.com/docs/tokens/refresh-token/current
      */
     public function renewTokens(array $options = [])
@@ -588,7 +588,7 @@ class Auth0
     /**
      * Set the user property to a userinfo array and, if configured, persist
      *
-     * @param array $user - userinfo from Auth0.
+     * @param array $user - userinfo from Auth.
      *
      * @return $this
      */
@@ -607,7 +607,7 @@ class Auth0
      *
      * @param string $accessToken - access token returned from the code exchange.
      *
-     * @return \Auth0\SDK\Auth0
+     * @return \Upbond\Auth\SDK\Auth
      */
     public function setAccessToken($accessToken)
     {
@@ -624,7 +624,7 @@ class Auth0
      *
      * @param string $idToken - ID token returned from the code exchange.
      *
-     * @return \Auth0\SDK\Auth0
+     * @return \Upbond\Auth\SDK\Auth
      *
      * @throws CoreException
      * @throws InvalidTokenException
@@ -678,7 +678,7 @@ class Auth0
      *
      * @param string $refreshToken - refresh token returned from the code exchange.
      *
-     * @return \Auth0\SDK\Auth0
+     * @return \Upbond\Auth\SDK\Auth
      */
     public function setRefreshToken($refreshToken)
     {
@@ -774,7 +774,7 @@ class Auth0
      *
      * @param StoreInterface $store - storage engine to use.
      *
-     * @return \Auth0\SDK\Auth0
+     * @return \Upbond\Auth\SDK\Auth
      */
     public function setStore(StoreInterface $store)
     {

@@ -1,7 +1,7 @@
 <?php
-namespace Auth0\Tests\Store;
+namespace Auth\Tests\Store;
 
-use Auth0\SDK\Store\CookieStore;
+use Upbond\Auth\SDK\Store\CookieStore;
 use PHPUnit\Framework\TestCase;
 use PHPUnit\Framework\Error\Warning;
 

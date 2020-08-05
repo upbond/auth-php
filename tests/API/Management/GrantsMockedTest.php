@@ -1,17 +1,17 @@
 <?php
-namespace Auth0\Tests\API\Management;
+namespace Auth\Tests\API\Management;
 
-use Auth0\SDK\API\Helpers\InformationHeaders;
-use Auth0\SDK\API\Management;
-use Auth0\SDK\Exception\CoreException;
-use Auth0\Tests\Traits\ErrorHelpers;
+use Upbond\Auth\SDK\API\Helpers\InformationHeaders;
+use Upbond\Auth\SDK\API\Management;
+use Upbond\Auth\SDK\Exception\CoreException;
+use Auth\Tests\Traits\ErrorHelpers;
 use GuzzleHttp\Psr7\Response;
 use PHPUnit\Framework\TestCase;
 
 /**
  * Class GrantsTestMocked.
  *
- * @package Auth0\Tests\API\Management
+ * @package Auth\Tests\API\Management
  */
 class GrantsTestMocked extends TestCase
 {
@@ -54,7 +54,7 @@ class GrantsTestMocked extends TestCase
 
         $headers = $api->getHistoryHeaders();
         $this->assertEquals( 'Bearer __api_token__', $headers['Authorization'][0] );
-        $this->assertEquals( self::$telemetry, $headers['Auth0-Client'][0] );
+        $this->assertEquals( self::$telemetry, $headers['Auth-Client'][0] );
     }
 
     /**
@@ -323,7 +323,7 @@ class GrantsTestMocked extends TestCase
 
         $headers = $api->getHistoryHeaders();
         $this->assertEquals( 'Bearer __api_token__', $headers['Authorization'][0] );
-        $this->assertEquals( self::$telemetry, $headers['Auth0-Client'][0] );
+        $this->assertEquals( self::$telemetry, $headers['Auth-Client'][0] );
     }
 
     /**

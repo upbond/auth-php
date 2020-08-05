@@ -1,10 +1,10 @@
 <?php
 declare(strict_types=1);
 
-namespace Auth0\SDK\Helpers;
+namespace Upbond\Auth\SDK\Helpers;
 
-use Auth0\SDK\API\Helpers\RequestBuilder;
-use Auth0\SDK\Helpers\Cache\NoCacheHandler;
+use Upbond\Auth\SDK\API\Helpers\RequestBuilder;
+use Upbond\Auth\SDK\Helpers\Cache\NoCacheHandler;
 use GuzzleHttp\Exception\ClientException;
 use GuzzleHttp\Exception\RequestException;
 use Psr\SimpleCache\CacheInterface;
@@ -12,7 +12,7 @@ use Psr\SimpleCache\CacheInterface;
 /**
  * Class JWKFetcher.
  *
- * @package Auth0\SDK\Helpers
+ * @package Upbond\Auth\SDK\Helpers
  */
 class JWKFetcher
 {

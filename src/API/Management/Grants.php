@@ -1,12 +1,12 @@
 <?php
-namespace Auth0\SDK\API\Management;
+namespace Upbond\Auth\SDK\API\Management;
 
-use Auth0\SDK\Exception\CoreException;
+use Upbond\Auth\SDK\Exception\CoreException;
 
 /**
  * Class Grants
  *
- * @package Auth0\SDK\API\Management
+ * @package Upbond\Auth\SDK\API\Management
  */
 class Grants extends GenericResource
 {

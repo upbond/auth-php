@@ -1,12 +1,12 @@
 <?php
 declare(strict_types=1);
 
-namespace Auth0\SDK\Store;
+namespace Upbond\Auth\SDK\Store;
 
 /**
  * Interface StoreInterface
  *
- * @package Auth0\SDK\Store
+ * @package Upbond\Auth\SDK\Store
  */
 interface StoreInterface
 {

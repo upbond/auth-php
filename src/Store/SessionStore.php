@@ -1,17 +1,17 @@
 <?php
 declare(strict_types=1);
 
-namespace Auth0\SDK\Store;
+namespace Upbond\Auth\SDK\Store;
 
 /**
  * Class SessionStore
  * This class provides a layer to persist data using PHP Sessions.
  *
- * NOTE: If you are using this storage method for the transient_store option in the Auth0 class along with a
+ * NOTE: If you are using this storage method for the transient_store option in the Auth class along with a
  * response_mode of form_post, the session cookie MUST be set to SameSite=None and Secure using
  * session_set_cookie_params() or another method. This combination will be enforced by browsers in early 2020.
  *
- * @package Auth0\SDK\Store
+ * @package Upbond\Auth\SDK\Store
  */
 class SessionStore implements StoreInterface
 {
@@ -38,7 +38,7 @@ class SessionStore implements StoreInterface
     }
 
     /**
-     * This basic implementation of BaseAuth0 SDK uses
+     * This basic implementation of BaseAuth SDK uses
      * PHP Sessions to store volatile data.
      *
      * @return void

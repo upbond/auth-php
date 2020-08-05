@@ -1,181 +1,181 @@
 <?php
 declare(strict_types=1);
 
-namespace Auth0\SDK\API;
+namespace Upbond\Auth\SDK\API;
 
-use Auth0\SDK\API\Header\AuthorizationBearer;
-use Auth0\SDK\API\Helpers\ApiClient;
-use Auth0\SDK\API\Management\Blacklists;
-use Auth0\SDK\API\Management\Clients;
-use Auth0\SDK\API\Management\ClientGrants;
-use Auth0\SDK\API\Management\Connections;
-use Auth0\SDK\API\Management\DeviceCredentials;
-use Auth0\SDK\API\Management\Emails;
-use Auth0\SDK\API\Management\EmailTemplates;
-use Auth0\SDK\API\Management\Grants;
-use Auth0\SDK\API\Management\Guardian;
-use Auth0\SDK\API\Management\Jobs;
-use Auth0\SDK\API\Management\Logs;
-use Auth0\SDK\API\Management\ResourceServers;
-use Auth0\SDK\API\Management\Roles;
-use Auth0\SDK\API\Management\Rules;
-use Auth0\SDK\API\Management\Stats;
-use Auth0\SDK\API\Management\Tenants;
-use Auth0\SDK\API\Management\Tickets;
-use Auth0\SDK\API\Management\UserBlocks;
-use Auth0\SDK\API\Management\Users;
-use Auth0\SDK\API\Management\UsersByEmail;
+use Upbond\Auth\SDK\API\Header\AuthorizationBearer;
+use Upbond\Auth\SDK\API\Helpers\ApiClient;
+use Upbond\Auth\SDK\API\Management\Blacklists;
+use Upbond\Auth\SDK\API\Management\Clients;
+use Upbond\Auth\SDK\API\Management\ClientGrants;
+use Upbond\Auth\SDK\API\Management\Connections;
+use Upbond\Auth\SDK\API\Management\DeviceCredentials;
+use Upbond\Auth\SDK\API\Management\Emails;
+use Upbond\Auth\SDK\API\Management\EmailTemplates;
+use Upbond\Auth\SDK\API\Management\Grants;
+use Upbond\Auth\SDK\API\Management\Guardian;
+use Upbond\Auth\SDK\API\Management\Jobs;
+use Upbond\Auth\SDK\API\Management\Logs;
+use Upbond\Auth\SDK\API\Management\ResourceServers;
+use Upbond\Auth\SDK\API\Management\Roles;
+use Upbond\Auth\SDK\API\Management\Rules;
+use Upbond\Auth\SDK\API\Management\Stats;
+use Upbond\Auth\SDK\API\Management\Tenants;
+use Upbond\Auth\SDK\API\Management\Tickets;
+use Upbond\Auth\SDK\API\Management\UserBlocks;
+use Upbond\Auth\SDK\API\Management\Users;
+use Upbond\Auth\SDK\API\Management\UsersByEmail;
 
 /**
  * Class Management
  *
- * @package Auth0\SDK\API
+ * @package Upbond\Auth\SDK\API
  */
 class Management
 {
 
     /**
-     * Instance of Auth0\SDK\API\Helpers\ApiClient
+     * Instance of Upbond\Auth\SDK\API\Helpers\ApiClient
      *
      * @var ApiClient
      */
     private $apiClient;
 
     /**
-     * Instance of Auth0\SDK\API\Management\Blacklists
+     * Instance of Upbond\Auth\SDK\API\Management\Blacklists
      *
      * @var Blacklists
      */
     private $blacklists;
 
     /**
-     * Instance of Auth0\SDK\API\Management\Clients
+     * Instance of Upbond\Auth\SDK\API\Management\Clients
      *
      * @var Clients
      */
     private $clients;
 
     /**
-     * Instance of Auth0\SDK\API\Management\ClientGrants
+     * Instance of Upbond\Auth\SDK\API\Management\ClientGrants
      *
      * @var ClientGrants
      */
     private $clientGrants;
 
     /**
-     * Instance of Auth0\SDK\API\Management\Connections
+     * Instance of Upbond\Auth\SDK\API\Management\Connections
      *
      * @var Connections
      */
     private $connections;
 
     /**
-     * Instance of Auth0\SDK\API\Management\DeviceCredentials
+     * Instance of Upbond\Auth\SDK\API\Management\DeviceCredentials
      *
      * @var DeviceCredentials
      */
     private $deviceCredentials;
 
     /**
-     * Instance of Auth0\SDK\API\Management\Emails
+     * Instance of Upbond\Auth\SDK\API\Management\Emails
      *
      * @var Emails
      */
     private $emails;
 
     /**
-     * Instance of Auth0\SDK\API\Management\EmailTemplates
+     * Instance of Upbond\Auth\SDK\API\Management\EmailTemplates
      *
      * @var EmailTemplates
      */
     private $emailTemplates;
 
     /**
-     * Instance of Auth0\SDK\API\Management\Jobs
+     * Instance of Upbond\Auth\SDK\API\Management\Jobs
      *
      * @var Jobs
      */
     private $jobs;
 
     /**
-     * Instance of Auth0\SDK\API\Management\Grants
+     * Instance of Upbond\Auth\SDK\API\Management\Grants
      *
      * @var Grants
      */
     private $grants;
 
     /**
-     * Instance of Auth0\SDK\API\Management\Guardian
+     * Instance of Upbond\Auth\SDK\API\Management\Guardian
      *
      * @var Guardian
      */
     private $guardian;
 
     /**
-     * Instance of Auth0\SDK\API\Management\Logs
+     * Instance of Upbond\Auth\SDK\API\Management\Logs
      *
      * @var Logs
      */
     private $logs;
 
     /**
-     * Instance of Auth0\SDK\API\Management\Roles
+     * Instance of Upbond\Auth\SDK\API\Management\Roles
      *
      * @var Roles
      */
     private $roles;
 
     /**
-     * Instance of Auth0\SDK\API\Management\Rules
+     * Instance of Upbond\Auth\SDK\API\Management\Rules
      *
      * @var Rules
      */
     private $rules;
 
     /**
-     * Instance of Auth0\SDK\API\Management\ResourceServers
+     * Instance of Upbond\Auth\SDK\API\Management\ResourceServers
      *
      * @var ResourceServers
      */
     private $resourceServers;
 
     /**
-     * Instance of Auth0\SDK\API\Management\Stats
+     * Instance of Upbond\Auth\SDK\API\Management\Stats
      *
      * @var Stats
      */
     private $stats;
 
     /**
-     * Instance of Auth0\SDK\API\Management\Tenants
+     * Instance of Upbond\Auth\SDK\API\Management\Tenants
      *
      * @var Tenants
      */
     private $tenants;
 
     /**
-     * Instance of Auth0\SDK\API\Management\Tickets
+     * Instance of Upbond\Auth\SDK\API\Management\Tickets
      *
      * @var Tickets
      */
     private $tickets;
 
     /**
-     * Instance of Auth0\SDK\API\Management\UserBlocks
+     * Instance of Upbond\Auth\SDK\API\Management\UserBlocks
      *
      * @var UserBlocks
      */
     private $userBlocks;
 
     /**
-     * Instance of Auth0\SDK\API\Management\Users
+     * Instance of Upbond\Auth\SDK\API\Management\Users
      *
      * @var Users
      */
     private $users;
 
     /**
-     * Instance of Auth0\SDK\API\Management\UsersByEmail
+     * Instance of Upbond\Auth\SDK\API\Management\UsersByEmail
      *
      * @var UsersByEmail
      */

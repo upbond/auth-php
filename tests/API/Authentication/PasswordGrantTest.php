@@ -1,12 +1,12 @@
 <?php
-namespace Auth0\Tests\API\Authentication;
+namespace Auth\Tests\API\Authentication;
 
-use Auth0\Tests\API\ApiTests;
-use Auth0\Tests\Traits\ErrorHelpers;
+use Auth\Tests\API\ApiTests;
+use Auth\Tests\Traits\ErrorHelpers;
 
-use Auth0\SDK\API\Authentication;
-use Auth0\SDK\Exception\ApiException;
-use Auth0\SDK\API\Helpers\InformationHeaders;
+use Upbond\Auth\SDK\API\Authentication;
+use Upbond\Auth\SDK\Exception\ApiException;
+use Upbond\Auth\SDK\API\Helpers\InformationHeaders;
 
 use GuzzleHttp\Psr7\Response;
 
@@ -14,7 +14,7 @@ use GuzzleHttp\Psr7\Response;
  * Class PasswordGrantTest
  * Tests the Authentication API class, specifically password grants.
  *
- * @package Auth0\Tests\API\Authentication
+ * @package Auth\Tests\API\Authentication
  */
 class PasswordGrantTest extends ApiTests
 {
@@ -119,8 +119,8 @@ class PasswordGrantTest extends ApiTests
         $this->assertEquals( 'https://test-domain.auth0.com/oauth/token', $api->getHistoryUrl() );
 
         $request_headers = $api->getHistoryHeaders();
-        $this->assertArrayHasKey( 'Auth0-Client', $request_headers );
-        $this->assertEquals( self::$expectedTelemetry, $request_headers['Auth0-Client'][0] );
+        $this->assertArrayHasKey( 'Auth-Client', $request_headers );
+        $this->assertEquals( self::$expectedTelemetry, $request_headers['Auth-Client'][0] );
         $this->assertArrayHasKey( 'Content-Type', $request_headers );
         $this->assertEquals( 'application/json', $request_headers['Content-Type'][0] );
 
@@ -177,8 +177,8 @@ class PasswordGrantTest extends ApiTests
         );
 
         $request_headers = $api->getHistoryHeaders();
-        $this->assertArrayHasKey( 'Auth0-Forwarded-For', $request_headers );
-        $this->assertEquals( '1.2.3.4', $request_headers['Auth0-Forwarded-For'][0] );
+        $this->assertArrayHasKey( 'Auth-Forwarded-For', $request_headers );
+        $this->assertEquals( '1.2.3.4', $request_headers['Auth-Forwarded-For'][0] );
 
         $api->call()->login_with_default_directory( [
             'username' => uniqid(),
@@ -187,8 +187,8 @@ class PasswordGrantTest extends ApiTests
         ] );
 
         $request_headers = $api->getHistoryHeaders();
-        $this->assertArrayHasKey( 'Auth0-Forwarded-For', $request_headers );
-        $this->assertEquals( '1.2.3.4', $request_headers['Auth0-Forwarded-For'][0] );
+        $this->assertArrayHasKey( 'Auth-Forwarded-For', $request_headers );
+        $this->assertEquals( '1.2.3.4', $request_headers['Auth-Forwarded-For'][0] );
     }
 
     /**
@@ -213,8 +213,8 @@ class PasswordGrantTest extends ApiTests
         );
 
         $request_headers = $api->getHistoryHeaders();
-        $this->assertArrayHasKey( 'Auth0-Forwarded-For', $request_headers );
-        $this->assertEquals( '5.6.7.8', $request_headers['Auth0-Forwarded-For'][0] );
+        $this->assertArrayHasKey( 'Auth-Forwarded-For', $request_headers );
+        $this->assertEquals( '5.6.7.8', $request_headers['Auth-Forwarded-For'][0] );
 
         $api->call()->login( [
             'username' => uniqid(),
@@ -224,7 +224,7 @@ class PasswordGrantTest extends ApiTests
         ] );
 
         $request_headers = $api->getHistoryHeaders();
-        $this->assertArrayHasKey( 'Auth0-Forwarded-For', $request_headers );
-        $this->assertEquals( '5.6.7.8', $request_headers['Auth0-Forwarded-For'][0] );
+        $this->assertArrayHasKey( 'Auth-Forwarded-For', $request_headers );
+        $this->assertEquals( '5.6.7.8', $request_headers['Auth-Forwarded-For'][0] );
     }
 }

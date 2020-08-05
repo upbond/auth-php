@@ -1,12 +1,12 @@
 <?php
-namespace Auth0\Tests\API\Authentication;
+namespace Auth\Tests\API\Authentication;
 
-use Auth0\Tests\API\ApiTests;
-use Auth0\Tests\Traits\ErrorHelpers;
+use Auth\Tests\API\ApiTests;
+use Auth\Tests\Traits\ErrorHelpers;
 
-use Auth0\SDK\API\Authentication;
-use Auth0\SDK\Exception\ApiException;
-use Auth0\SDK\API\Helpers\InformationHeaders;
+use Upbond\Auth\SDK\API\Authentication;
+use Upbond\Auth\SDK\Exception\ApiException;
+use Upbond\Auth\SDK\API\Helpers\InformationHeaders;
 
 use GuzzleHttp\Psr7\Response;
 
@@ -14,7 +14,7 @@ use GuzzleHttp\Psr7\Response;
  * Class PasswordlessTest
  * Tests the Authentication API class, specifically passwordless grants.
  *
- * @package Auth0\Tests\API\Authentication
+ * @package Auth\Tests\API\Authentication
  */
 class PasswordlessTest extends ApiTests
 {
@@ -51,8 +51,8 @@ class PasswordlessTest extends ApiTests
         $this->assertEquals( 'https://test-domain.auth0.com/passwordless/start', $api->getHistoryUrl() );
 
         $request_headers = $api->getHistoryHeaders();
-        $this->assertArrayHasKey( 'Auth0-Client', $request_headers );
-        $this->assertEquals( self::$expectedTelemetry, $request_headers['Auth0-Client'][0] );
+        $this->assertArrayHasKey( 'Auth-Client', $request_headers );
+        $this->assertEquals( self::$expectedTelemetry, $request_headers['Auth-Client'][0] );
         $this->assertArrayHasKey( 'Content-Type', $request_headers );
         $this->assertEquals( 'application/json', $request_headers['Content-Type'][0] );
 
@@ -91,8 +91,8 @@ class PasswordlessTest extends ApiTests
         $this->assertEquals( 'https://test-domain.auth0.com/passwordless/start', $api->getHistoryUrl() );
 
         $request_headers = $api->getHistoryHeaders();
-        $this->assertArrayHasKey( 'Auth0-Client', $request_headers );
-        $this->assertEquals( self::$expectedTelemetry, $request_headers['Auth0-Client'][0] );
+        $this->assertArrayHasKey( 'Auth-Client', $request_headers );
+        $this->assertEquals( self::$expectedTelemetry, $request_headers['Auth-Client'][0] );
         $this->assertArrayHasKey( 'Content-Type', $request_headers );
         $this->assertEquals( 'application/json', $request_headers['Content-Type'][0] );
 

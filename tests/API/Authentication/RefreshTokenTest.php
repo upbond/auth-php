@@ -1,18 +1,18 @@
 <?php
-namespace Auth0\Tests\API\Authentication;
+namespace Auth\Tests\API\Authentication;
 
-use Auth0\SDK\API\Authentication;
-use Auth0\SDK\API\Helpers\InformationHeaders;
-use Auth0\SDK\Exception\ApiException;
-use Auth0\Tests\API\ApiTests;
+use Upbond\Auth\SDK\API\Authentication;
+use Upbond\Auth\SDK\API\Helpers\InformationHeaders;
+use Upbond\Auth\SDK\Exception\ApiException;
+use Auth\Tests\API\ApiTests;
 
 use GuzzleHttp\Psr7\Response;
 
 /**
  * Class RefreshTokenTest.
- * Tests the \Auth0\SDK\API\Authentication::refresh_token() method.
+ * Tests the \Upbond\Auth\SDK\API\Authentication::refresh_token() method.
  *
- * @package Auth0\Tests\API\Authentication
+ * @package Auth\Tests\API\Authentication
  */
 class RefreshTokenTest extends ApiTests
 {
@@ -114,7 +114,7 @@ class RefreshTokenTest extends ApiTests
         $this->assertEmpty( $api->getHistoryQuery() );
 
         $headers = $api->getHistoryHeaders();
-        $this->assertEquals( self::$expectedTelemetry, $headers['Auth0-Client'][0] );
+        $this->assertEquals( self::$expectedTelemetry, $headers['Auth-Client'][0] );
 
         $request_body = $api->getHistoryBody();
         $this->assertEquals( 'refresh_token', $request_body['grant_type'] );

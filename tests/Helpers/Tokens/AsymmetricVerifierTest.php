@@ -1,8 +1,8 @@
 <?php
-namespace Auth0\Tests\Helpers\Tokens;
+namespace Auth\Tests\Helpers\Tokens;
 
-use Auth0\SDK\Exception\InvalidTokenException;
-use Auth0\SDK\Helpers\Tokens\AsymmetricVerifier;
+use Upbond\Auth\SDK\Exception\InvalidTokenException;
+use Upbond\Auth\SDK\Helpers\Tokens\AsymmetricVerifier;
 use Lcobucci\JWT\Builder;
 use Lcobucci\JWT\Signer\Key;
 use Lcobucci\JWT\Signer\Rsa\Sha256 as RsSigner;
@@ -12,7 +12,7 @@ use PHPUnit\Framework\TestCase;
 /**
  * Class AsymmetricVerifierTest.
  *
- * @package Auth0\Tests\Helpers
+ * @package Auth\Tests\Helpers
  */
 class AsymmetricVerifierTest extends TestCase
 {

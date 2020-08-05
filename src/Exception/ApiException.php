@@ -1,6 +1,6 @@
 <?php
 
-namespace Auth0\SDK\Exception;
+namespace Upbond\Auth\SDK\Exception;
 
 /**
  * Represents all errors returned by the server

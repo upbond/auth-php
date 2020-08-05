@@ -8,14 +8,14 @@ Only potentially breaking changes are covered in this guide. For a list of all c
 
 The v7 release requires PHP 7.1 or later to enable a number of helpful features like type hinting and null coalescing.
 
-## Auth0 class configuration changes
+## Auth class configuration changes
 
-A number of breaking changes were made to the `Auth0` class configuration passed in at initialization.
+A number of breaking changes were made to the `Auth` class configuration passed in at initialization.
 
-The main breaking change is only for applications that accept HS256 ID tokens. If your application is set to accept ID tokens signed using the HS256 algorithm, we recommend changing that to `RS256` in the Auth0 Application > Settings tab > Advanced settings > OAuth tab > JsonWebToken Signature Algorithm field before upgrading and leaving the `id_token_alg` configuration key unset. If your application cannot be changed for some reason, set the `id_token_alg` configuration key to `HS256`, like so:
+The main breaking change is only for applications that accept HS256 ID tokens. If your application is set to accept ID tokens signed using the HS256 algorithm, we recommend changing that to `RS256` in the Auth Application > Settings tab > Advanced settings > OAuth tab > JsonWebToken Signature Algorithm field before upgrading and leaving the `id_token_alg` configuration key unset. If your application cannot be changed for some reason, set the `id_token_alg` configuration key to `HS256`, like so:
 
 ```php
-$auth0 = new Auth0([
+$auth0 = new Auth([
 	'domain' => 'your-tenant.auth0.com',
 	'client_id' => 'application_client_id',
 	'client_secret' => 'application_client_secret',
@@ -34,7 +34,7 @@ The `cache_handler` configuration key must now be an instance of `Psr\SimpleCach
 
 The default `secret_base64_encoded` value is now `false` and is no longer stored in a property. 
 
-The `client_secret` configuration key is no longer required for class initialization (but will throw an exception in certain methods when required). If `secret_base64_encoded` is set to `true` then then the `clientSecret` property will now contain the decoded secret. If your Application is using an encoded secret, this encoding can be turned off tby rotating the client secret in the Auth0 Application settings.
+The `client_secret` configuration key is no longer required for class initialization (but will throw an exception in certain methods when required). If `secret_base64_encoded` is set to `true` then then the `clientSecret` property will now contain the decoded secret. If your Application is using an encoded secret, this encoding can be turned off tby rotating the client secret in the Auth Application settings.
 
 The `session_cookie_expires` configuration key has been removed. The session cookie expiration should be managed in the application. If you were using this setting before, [see the PHP core function session\_set\_cookie\_params()](https://www.php.net/manual/en/function.session-set-cookie-params.php) to set this value after upgrading.
 
@@ -48,15 +48,15 @@ The `debug` configuration key was removed.
 
 ## Cache handling
 
-Cache handling has been changed in v7 to conform to the PSR-16 standard (see the discussion [here](https://github.com/auth0/auth0-PHP/issues/282)). Objects passed to the `cache_handler` configuration key in `Auth0` and the first parameter of the `JWKFetcher` class should be instances of `Psr\SimpleCache\CacheInterface`.
+Cache handling has been changed in v7 to conform to the PSR-16 standard (see the discussion [here](https://github.com/auth0/auth0-PHP/issues/282)). Objects passed to the `cache_handler` configuration key in `Auth` and the first parameter of the `JWKFetcher` class should be instances of `Psr\SimpleCache\CacheInterface`.
 
 ## State and nonce handling
 
 The handling for transient authentication data, such as `state` and `nonce`, has been changed. 
 
-In an effort to enforce security standards set forth in the OAuth and OpenID Connect specifications, `state` checking on the callback route and `nonce` checking for all received ID tokens is now mandatory. Applications that require IdP-initiated sign-on should add a login route that uses `Auth0->getLoginUrl()` to redirect through Auth0 with valid state and nonce values. The URL to this route should be saved to the **Application Login URI** field in your Auth0 Application to assist with this scenario.
+In an effort to enforce security standards set forth in the OAuth and OpenID Connect specifications, `state` checking on the callback route and `nonce` checking for all received ID tokens is now mandatory. Applications that require IdP-initiated sign-on should add a login route that uses `Auth->getLoginUrl()` to redirect through Auth with valid state and nonce values. The URL to this route should be saved to the **Application Login URI** field in your Auth Application to assist with this scenario.
 
-The handling for these values was changed from PHP session-stored values to cookies using the new `CookieStore` class. This was done so PHP session usage was not required and to assist with applications using a `form_post` reponse mode. This change may require server-level whitelisting of cookie names (`auth0__nonce` and `auth0__state` by default) on some managed hosts. The `transient_store` configuration key in the `Auth0` class can be used to switch back to PHP sessions or provide another method.
+The handling for these values was changed from PHP session-stored values to cookies using the new `CookieStore` class. This was done so PHP session usage was not required and to assist with applications using a `form_post` reponse mode. This change may require server-level whitelisting of cookie names (`auth0__nonce` and `auth0__state` by default) on some managed hosts. The `transient_store` configuration key in the `Auth` class can be used to switch back to PHP sessions or provide another method.
 
 The default state key was changed from `auth0__webauth_state` to `auth0__state`.
 
@@ -65,7 +65,7 @@ The default state key was changed from `auth0__webauth_state` to `auth0__state`.
 The following classes were removed in v7:
 
 - Class `Firebase\JWT\JWT` provided by the `firebase/php-jwt` package was replaced with classes from the `lcobucci/jwt` package
-- Class `JWTVerifier` was removed, see the `Auth0->decodeIdToken()` method for how to use the replacement classes
+- Class `JWTVerifier` was removed, see the `Auth->decodeIdToken()` method for how to use the replacement classes
 - Class `StateHandler` was removed, see the **State and nonce handling** section above for more information
 - Class `SessionStateHandler` was removed, see the **State and nonce handling** section above for more information
 - Class `DummyStateHandler` was removed, see the **State and nonce handling** section above for more information
@@ -73,9 +73,9 @@ The following classes were removed in v7:
 - Class `FileSystemCacheHandler` was removed, see the **Cache handling** section above for more information
 - Class `TokenGenerator` was removed, no replacement provided
 - Class `Oauth2Client` was removed, no replacement provided
-- Class `Auth0Api` was removed, no replacement provided
-- Class `Auth0AuthApi` was removed, no replacement provided
-- Class `Auth0JWT` was removed, no replacement provided
+- Class `AuthApi` was removed, no replacement provided
+- Class `AuthAuthApi` was removed, no replacement provided
+- Class `AuthJWT` was removed, no replacement provided
 
 ## Classes changes
 
@@ -86,7 +86,7 @@ The following class constructors were changed in v7:
 - Class `JWKFetcher` now requires an instance of `Psr\SimpleCache\CacheInterface` as the first construct parameter
 - Class constant `SessionStore::COOKIE_EXPIRES` was removed
 - Class `SessionStore` no longer accepts a 2nd constructor argument to adjust the session cookie expiration; [see the PHP core function session\_set\_cookie\_params()](https://www.php.net/manual/en/function.session-set-cookie-params.php) to set this value in v7
-- Class `Auth0\SDK\API\Header\Authorization\AuthorizationBearer` was changed to `Auth0\SDK\API\Header\AuthorizationBearer`
+- Class `Upbond\Auth\SDK\API\Header\Authorization\AuthorizationBearer` was changed to `Upbond\Auth\SDK\API\Header\AuthorizationBearer`
 
 ## Methods changed
 
@@ -121,7 +121,7 @@ The following methods were removed in v7:
 - Public method `Authentication->impersonate()` was removed, no replacement provided
 - Public method `Authentication->email_code_passwordless_verify()` was removed, no replacement provided
 - Public method `Authentication->sms_code_passwordless_verify()` was removed, no replacement provided
-- Public method `Auth0->setDebugger()` was removed, no replacement provided
+- Public method `Auth->setDebugger()` was removed, no replacement provided
 - Protected method `Authentication->setApiClient()` was removed, no replacement provided
 - Protected method `Management->setApiClient()` was removed, no replacement provided
 
@@ -148,9 +148,9 @@ The following properties were removed in v7:
 - Public property `Management->userBlocks` was made private, replaced by `Management->userBlocks()`
 - Public property `Management->users` was made private, replaced by `Management->users()`
 - Public property `Management->usersByEmail` was made private, replaced by `Management->usersByEmail()`
-- Public static property `Auth0::$URL_MAP` was removed
-- Protected property `Auth0->stateHandler` was removed
-- Protected property `Auth0->clientSecretEncoded` was removed
-- Protected property `Auth0->debugMode` was removed
-- Protected property `Auth0->debugger` was removed
+- Public static property `Auth::$URL_MAP` was removed
+- Protected property `Auth->stateHandler` was removed
+- Protected property `Auth->clientSecretEncoded` was removed
+- Protected property `Auth->debugMode` was removed
+- Protected property `Auth->debugger` was removed
 - Protected property `SessionStore->session_cookie_expires` was removed

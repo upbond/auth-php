@@ -1,14 +1,14 @@
 <?php
-namespace Auth0\Tests\Api\Helpers;
+namespace Auth\Tests\Api\Helpers;
 
-use Auth0\SDK\API\Helpers\InformationHeaders;
-use Auth0\SDK\API\Helpers\ApiClient;
+use Upbond\Auth\SDK\API\Helpers\InformationHeaders;
+use Upbond\Auth\SDK\API\Helpers\ApiClient;
 use PHPUnit\Framework\TestCase;
 
 /**
  * Class InformationHeadersTest
  *
- * @package Auth0\Tests\Api\Helpers
+ * @package Auth\Tests\Api\Helpers
  */
 class InformationHeadersTest extends TestCase
 {

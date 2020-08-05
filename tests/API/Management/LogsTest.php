@@ -1,14 +1,14 @@
 <?php
 
-namespace Auth0\Tests\API;
+namespace Auth\Tests\API;
 
-use Auth0\SDK\API\Management;
+use Upbond\Auth\SDK\API\Management;
 
 /**
  * Class LogsTest.
- * Tests the Auth0\SDK\API\Management\Logs class.
+ * Tests the Upbond\Auth\SDK\API\Management\Logs class.
  *
- * @package Auth0\Tests\API
+ * @package Auth\Tests\API
  */
 class LogsTest extends ApiTests
 {
@@ -25,7 +25,7 @@ class LogsTest extends ApiTests
      *
      * @return void
      *
-     * @throws \Auth0\SDK\Exception\ApiException
+     * @throws \Upbond\Auth\SDK\Exception\ApiException
      */
     public static function setUpBeforeClass()
     {

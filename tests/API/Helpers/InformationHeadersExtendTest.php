@@ -1,17 +1,17 @@
 <?php
-namespace Auth0\Tests\Api\Helpers;
+namespace Auth\Tests\Api\Helpers;
 
-use Auth0\SDK\API\Helpers\ApiClient;
-use Auth0\SDK\API\Helpers\InformationHeaders;
-use Auth0\Tests\API\Authentication\MockAuthenticationApi;
-use Auth0\Tests\API\Management\MockManagementApi;
+use Upbond\Auth\SDK\API\Helpers\ApiClient;
+use Upbond\Auth\SDK\API\Helpers\InformationHeaders;
+use Auth\Tests\API\Authentication\MockAuthenticationApi;
+use Auth\Tests\API\Management\MockManagementApi;
 use GuzzleHttp\Psr7\Response;
 use PHPUnit\Framework\TestCase;
 
 /**
  * Class InformationHeadersExtendTest
  *
- * @package Auth0\Tests\Api\Helpers
+ * @package Auth\Tests\Api\Helpers
  */
 class InformationHeadersExtendTest extends TestCase
 {
@@ -37,7 +37,7 @@ class InformationHeadersExtendTest extends TestCase
         $api->call()->connections()->getAll();
         $headers = $api->getHistoryHeaders();
 
-        $this->assertEquals( $new_headers->build(), $headers['Auth0-Client'][0] );
+        $this->assertEquals( $new_headers->build(), $headers['Auth-Client'][0] );
     }
 
     /**
@@ -56,7 +56,7 @@ class InformationHeadersExtendTest extends TestCase
         $api->call()->oauth_token( [ 'grant_type' => uniqid() ] );
         $headers = $api->getHistoryHeaders();
 
-        $this->assertEquals( $new_headers->build(), $headers['Auth0-Client'][0] );
+        $this->assertEquals( $new_headers->build(), $headers['Auth-Client'][0] );
     }
 
     /*

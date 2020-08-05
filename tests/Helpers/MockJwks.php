@@ -1,15 +1,15 @@
 <?php
-namespace Auth0\Tests\Helpers;
+namespace Auth\Tests\Helpers;
 
-use Auth0\SDK\Helpers\JWKFetcher;
-use Auth0\Tests\MockApi;
+use Upbond\Auth\SDK\Helpers\JWKFetcher;
+use Auth\Tests\MockApi;
 use Psr\SimpleCache\CacheInterface;
 
 
 /**
  * Class MockJwks
  *
- * @package Auth0\SDK\Helpers\JWKFetcher
+ * @package Upbond\Auth\SDK\Helpers\JWKFetcher
  */
 class MockJwks extends MockApi
 {

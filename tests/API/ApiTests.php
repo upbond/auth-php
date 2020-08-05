@@ -1,8 +1,8 @@
 <?php
-namespace Auth0\Tests\API;
+namespace Auth\Tests\API;
 
-use Auth0\SDK\API\Authentication;
-use Auth0\Tests\Traits\ErrorHelpers;
+use Upbond\Auth\SDK\API\Authentication;
+use Auth\Tests\Traits\ErrorHelpers;
 use josegonzalez\Dotenv\Loader;
 use PHPUnit\Framework\TestCase;
 
@@ -10,7 +10,7 @@ use PHPUnit\Framework\TestCase;
  * Class ApiTests.
  * Extend to test API endpoints with a live or mock API.
  *
- * @package Auth0\Tests\API
+ * @package Auth\Tests\API
  */
 class ApiTests extends TestCase
 {
@@ -28,7 +28,7 @@ class ApiTests extends TestCase
      *
      * @return array
      *
-     * @throws \Auth0\SDK\Exception\ApiException
+     * @throws \Upbond\Auth\SDK\Exception\ApiException
      */
     protected static function getEnv()
     {

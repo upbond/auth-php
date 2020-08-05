@@ -1,16 +1,16 @@
 <?php
 declare(strict_types=1);
 
-namespace Auth0\SDK\API\Helpers;
+namespace Upbond\Auth\SDK\API\Helpers;
 
-use \Auth0\SDK\API\Header\Header;
+use \Upbond\Auth\SDK\API\Header\Header;
 use \GuzzleHttp\Client;
 use \GuzzleHttp\Exception\RequestException;
 
 /**
  * Class RequestBuilder
  *
- * @package Auth0\SDK\API\Helpers
+ * @package Upbond\Auth\SDK\API\Helpers
  */
 class RequestBuilder
 {
@@ -104,7 +104,7 @@ class RequestBuilder
     /**
      * RequestBuilder constructor.
      *
-     * @param array $config Configuration array passed to \Auth0\SDK\API\Management constructor.
+     * @param array $config Configuration array passed to \Upbond\Auth\SDK\API\Management constructor.
      */
     public function __construct(array $config)
     {
