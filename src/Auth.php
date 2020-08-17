@@ -528,6 +528,7 @@ class Auth
         if (empty($response['access_token'])) {
             throw new ApiException('Invalid access_token - Retry login.');
         }
+  
 
         $this->setAccessToken($response['access_token']);
 
@@ -535,19 +536,19 @@ class Auth
             $this->setRefreshToken($response['refresh_token']);
         }
 
-        if (isset($response['id_token'])) {
-            if (! $this->transientHandler->isset(self::TRANSIENT_NONCE_KEY)) {
-                throw new InvalidTokenException('Nonce value not found in application store');
-            }
+        // if (isset($response['id_token'])) {
+        //     if (! $this->transientHandler->isset(self::TRANSIENT_NONCE_KEY)) {
+        //         throw new InvalidTokenException('Nonce value not found in application store');
+        //     }
 
-            $this->setIdToken($response['id_token']);
-        }
-
-        if ($this->skipUserinfo) {
-            $user = $this->idTokenDecoded;
-        } else {
-            $user = $this->authentication->userinfo($this->accessToken);
-        }
+        //     $this->setIdToken($response['id_token']);
+        // }
+        // if ($this->skipUserinfo) {
+        //     $user = $this->idTokenDecoded;
+        // } else {
+        //     $user = $this->authentication->userinfo($this->accessToken);
+        // }
+        $user = $this->authentication->userinfo($this->accessToken);
 
         if ($user) {
             $this->setUser($user);

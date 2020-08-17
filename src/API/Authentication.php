@@ -341,7 +341,7 @@ class Authentication
     public function userinfo(string $access_token) : array
     {
         return $this->apiClient->method('get')
-        ->addPath('userinfo')
+        ->addPath('authenticate', 'user')
         ->withHeader(new AuthorizationBearer($access_token))
         ->call();
     }
@@ -375,7 +375,7 @@ class Authentication
         }
 
         $request = $this->apiClient->method('post')
-            ->addPath( 'oauth', 'token' )
+            ->addPath( 'authenticate', 'oauth', 'token' )
             ->withBody(json_encode($options));
 
         if (isset($options['auth0_forwarded_for'])) {
