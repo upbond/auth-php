@@ -515,9 +515,16 @@ class Auth
         }
 
         $state = $this->getState();
-        if (! $state || ! $this->transientHandler->verify(self::TRANSIENT_STATE_KEY, $state)) {
+
+        $stateless = session('upbond_auth__stateless');
+
+        if (!$stateless && 
+            (! $state || ! $this->transientHandler->verify(self::TRANSIENT_STATE_KEY, $state))
+            ) {
             throw new CoreException('Invalid state');
         }
+
+        session(['upbond_auth__stateless' => false]);
 
         if ($this->user) {
             throw new CoreException('Can\'t initialize a new session while there is one active session already');
