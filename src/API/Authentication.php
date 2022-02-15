@@ -15,6 +15,7 @@ use Upbond\Auth\SDK\API\Header\ForwardedFor;
 use Upbond\Auth\SDK\API\Helpers\ApiClient;
 use Upbond\Auth\SDK\Exception\ApiException;
 use GuzzleHttp\Psr7;
+use Upbond\Auth\SDK\Utility\PKCE;
 
 /**
  * Class Authentication
@@ -66,6 +67,11 @@ class Authentication
      */
     private $guzzleOptions;
 
+    private $code_verifier;
+    private $code_challenge;
+    private $code_challenge_method;
+
+
     /**
      * ApiClient instance.
      *
@@ -92,7 +98,11 @@ class Authentication
         ?string $client_secret = null,
         ?string $audience = null,
         ?string $scope = null,
-        array $guzzleOptions = []
+        array $guzzleOptions = [],
+        ?string $code_verifier = null,
+        ?string $code_challenge = null,
+        ?string $code_challenge_method = null
+
     )
     {
         $this->domain        = $domain;
@@ -101,6 +111,10 @@ class Authentication
         $this->audience      = $audience;
         $this->scope         = $scope;
         $this->guzzleOptions = $guzzleOptions;
+
+        $this->code_verifier = $code_verifier;
+        $this->code_challenge = $code_challenge;
+        $this->code_challenge_method = $code_challenge_method;
 
         $this->apiClient = new ApiClient( [
             'domain' => 'https://'.$this->domain,
@@ -138,8 +152,22 @@ class Authentication
         $params['state']         = $state ?? $params['state'] ?? null;
         $params['audience']      = $params['audience'] ?? $this->audience ?? null;
         $params['scope']         = $params['scope'] ?? $this->scope ?? null;
+        $params['code_challenge']         = $params['code_challenge'] ?? $this->code_challenge ?? null;
+        $params['code_challenge_method']         = $params['code_challenge_method'] ?? $this->code_challenge_method ?? 'S256';
+        $params['code_verifier'] = $params['code_verifier'] ?? $this->code_verifier ?? null;
 
+
+        // code_challenge: JfTJyQnjqRG78O1H1NakYBG6c3OHrQuLoE_QYKzfUYk
+        // code_challenge_method: S256
         $params = array_filter($params);
+         
+        // v2 authorize
+        return sprintf(
+            'https://%s/authorize?%s',
+            $this->domain,
+            Psr7\build_query($params)
+        );
+    
 
         return sprintf(
             'https://%s/authenticate/oauth/authorize?%s',
@@ -341,7 +369,8 @@ class Authentication
     public function userinfo(string $access_token) : array
     {
         return $this->apiClient->method('get')
-        ->addPath('authenticate', 'user')
+        // ->addPath('authenticate', 'user')
+        ->addPath( 'userinfo')
         ->withHeader(new AuthorizationBearer($access_token))
         ->call();
     }
@@ -373,9 +402,10 @@ class Authentication
         if (! isset($options['grant_type'])) {
             throw new ApiException('grant_type is mandatory');
         }
-
+// dd($options);
         $request = $this->apiClient->method('post')
-            ->addPath( 'authenticate', 'oauth', 'token' )
+            // ->addPath( 'authenticate', 'oauth', 'token' )
+            ->addPath( 'oauth', 'token' )
             ->withBody(json_encode($options));
 
         if (isset($options['auth0_forwarded_for'])) {
@@ -407,7 +437,10 @@ class Authentication
             'redirect_uri' => $redirect_uri,
             'code' => $code,
             'grant_type' => 'authorization_code',
+            'code_verifier'=> $this->code_verifier
         ];
+
+        // dd($options);
 
         return $this->oauth_token($options);
     }

@@ -24,6 +24,8 @@ use Upbond\Auth\SDK\API\Authentication;
 
 use GuzzleHttp\Exception\RequestException;
 use Psr\SimpleCache\CacheInterface;
+use Upbond\Auth\SDK\Utility\PKCE;
+
 
 /**
  * Class Auth
@@ -213,6 +215,12 @@ class Auth
      */
     protected $cacheHandler;
 
+    protected $code_verifier;
+
+    protected $code_challenge;
+
+    protected $code_challenge_method;
+
     /**
      * BaseAuth Constructor.
      *
@@ -248,7 +256,6 @@ class Auth
      */
     public function __construct(array $config)
     {
-    
         $this->domain = $config['domain'] ?? $_ENV['UPBOND_AUTH_DOMAIN'] ?? $config['api_uri'];
         if (empty($this->domain)) {
             throw new CoreException('Invalid domain');
@@ -258,7 +265,7 @@ class Auth
         // if (empty($this->clientId)) {
         //     throw new CoreException('Invalid client_id');
         // }
-
+                
         $this->redirectUri = $config['redirect_uri'] ?? $_ENV['UPBOND_AUTH_REDIRECT_URI'] ?? null;
         if (empty($this->redirectUri)) {
             throw new CoreException('Invalid redirect_uri');
@@ -278,6 +285,7 @@ class Auth
         $this->maxAge        = $config['max_age'] ?? null;
         $this->idTokenLeeway = $config['id_token_leeway'] ?? null;
         $this->jwksUri       = $config['jwks_uri'] ?? 'https://'.$this->domain.'/.well-known/jwks.json';
+
 
         $this->idTokenAlg = $config['id_token_alg'] ?? 'RS256';
         if (! in_array( $this->idTokenAlg, ['HS256', 'RS256'] )) {
@@ -313,6 +321,14 @@ class Auth
             $this->store = new SessionStore();
         }
 
+        $this->code_verifier = $this->store->get('code_verifier') ?? PKCE::generateCodeVerifier(128);
+        $this->code_challenge = PKCE::generateCodeChallenge($this->code_verifier);
+        $this->code_challenge_method = 'S256';
+
+        if(!$this->store->get('code_verifier')){
+            $this->store->set('code_verifier',$this->code_verifier);
+        }
+
         $transientStore = $config['transient_store'] ?? null;
         if (! $transientStore instanceof StoreInterface) {
             $transientStore = new CookieStore([
@@ -335,9 +351,12 @@ class Auth
             $this->clientSecret,
             $this->audience,
             $this->scope,
-            $this->guzzleOptions
+            $this->guzzleOptions,
+            $this->code_verifier,
+            $this->code_challenge,
+            $this->code_challenge_method
         );
-
+        // $this->store->set('code_verifier',$this->code_verifier);
         $this->user         = $this->store->get('user');
         $this->accessToken  = $this->store->get('access_token');
         $this->idToken      = $this->store->get('id_token');
@@ -733,7 +752,6 @@ class Auth
         } else if ($this->responseMode === 'form_post' && isset($_POST[self::TRANSIENT_STATE_KEY])) {
             $state = $_POST[self::TRANSIENT_STATE_KEY];
         }
-
         return $state;
     }
 
