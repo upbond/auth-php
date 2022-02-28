@@ -11,7 +11,7 @@
     }
   ],
   "require": {
-    "php": "^7.1",
+    "php": "^7.3 | ^8.0",
     "guzzlehttp/guzzle": "^5.3.3|^6.2.1|^7.0",
     "ext-json": "*",
     "lcobucci/jwt": "^3.3",
